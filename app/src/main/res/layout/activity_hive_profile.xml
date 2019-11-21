@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:visibility="visible"
+    tools:context=".HiveProfile"
+    tools:visibility="visible">
+
+<View
+    android:id="@+id/view"
+    android:layout_width="410dp"
+    android:layout_height="252dp"
+    android:layout_marginStart="2dp"
+    android:layout_marginLeft="2dp"
+    android:layout_marginEnd="2dp"
+    android:layout_marginRight="2dp"
+    android:background="#F8C471"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintHorizontal_bias="0.666"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toTopOf="parent" />
+
+<TextView
+android:id="@+id/textView"
+android:layout_width="wrap_content"
+android:layout_height="wrap_content"
+android:layout_marginStart="156dp"
+android:layout_marginLeft="156dp"
+android:layout_marginTop="28dp"
+android:text="Member"
+android:textColor="#FFFCFC"
+android:textSize="24sp"
+android:textStyle="bold"
+app:layout_constraintStart_toStartOf="parent"
+app:layout_constraintTop_toTopOf="parent"
+tools:text="الأعضاء" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="120dp"
+        android:layout_marginLeft="120dp"
+        android:layout_marginTop="12dp"
+        android:text="وصف القفير"
+        android:textColor="#F7F1F1"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView" />
+
+    <TextView
+android:id="@+id/gosignup"
+android:layout_width="wrap_content"
+android:layout_height="wrap_content"
+android:layout_marginTop="28dp"
+android:layout_marginEnd="44dp"
+android:layout_marginRight="44dp"
+android:layout_marginBottom="8dp"
+android:text="100k"
+android:textColor="#F3F2F2"
+android:textSize="24sp"
+app:layout_constraintBottom_toTopOf="@+id/textView6"
+app:layout_constraintEnd_toStartOf="@+id/textView"
+app:layout_constraintTop_toTopOf="parent"
+app:layout_constraintVertical_bias="0.0" />
+
+<TextView
+android:id="@+id/textView6"
+android:layout_width="wrap_content"
+android:layout_height="wrap_content"
+android:layout_marginTop="60dp"
+android:layout_marginEnd="308dp"
+android:layout_marginRight="308dp"
+android:text="800"
+android:textColor="#FAF9F9"
+android:textSize="24sp"
+app:layout_constraintEnd_toEndOf="parent"
+app:layout_constraintTop_toTopOf="parent" />
+
+<de.hdodenhof.circleimageview.CircleImageView
+android:layout_width="145dp"
+android:layout_height="145dp"
+android:layout_marginStart="8dp"
+android:layout_marginLeft="8dp"
+android:layout_marginTop="16dp"
+android:layout_marginEnd="8dp"
+android:layout_marginRight="8dp" android:src="@drawable/honey"
+app:layout_constraintEnd_toEndOf="parent"
+app:layout_constraintHorizontal_bias="0.936"
+app:layout_constraintStart_toStartOf="parent"
+app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textView7"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="460dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginRight="16dp"
+        android:text="إسم القفير"
+        android:textColor="#FAF8F8"
+        android:textSize="36sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/view"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.53"
+        tools:text="إسم القفير" />
+
+    <Switch
+        android:id="@+id/switch1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="200dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
+        android:checked="false"
+        android:clickable="true"
+        android:focusable="true"
+        android:text="انضمام"
+        android:textColor="#F5F2F2"
+        android:textColorHighlight="#FF9800"
+        android:textColorHint="#FF9800"
+        android:textColorLink="#FFC107"
+        android:textCursorDrawable="@android:color/holo_orange_dark"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toStartOf="@+id/textView7"
+        app:layout_constraintHorizontal_bias="0.375"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="انضمام " />
+
+<TextView
+android:id="@+id/textView8"
+android:layout_width="211dp"
+android:layout_height="63dp"
+android:layout_marginStart="8dp"
+android:layout_marginLeft="8dp"
+android:layout_marginTop="112dp"
+android:layout_marginEnd="8dp"
+android:layout_marginRight="8dp"
+android:textColor="#F7F2F2"
+android:textStyle="bold"
+app:layout_constraintEnd_toEndOf="parent"
+app:layout_constraintHorizontal_bias="0.059"
+app:layout_constraintStart_toStartOf="parent"
+app:layout_constraintTop_toTopOf="parent"
+tools:text="وصف القفير ١٠٠ حرف كحد اقصي" />
+
+<Button
+android:id="@+id/button4"
+android:layout_width="99dp"
+android:layout_height="44dp"
+android:layout_marginTop="352dp"
+android:layout_marginEnd="24dp"
+android:layout_marginRight="24dp"
+android:background="#FF9800"
+android:lineSpacingExtra="1sp"
+android:text="إضافه محتوى"
+android:textColor="#FFFFFF"
+android:textStyle="bold"
+android:typeface="normal"
+app:layout_constraintEnd_toEndOf="parent"
+app:layout_constraintHorizontal_bias="1.0"
+app:layout_constraintStart_toStartOf="parent"
+app:layout_constraintTop_toBottomOf="@+id/view" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>

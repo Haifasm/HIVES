@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/relativeLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#FFFFFF"
+    tools:context=".SetUpActivity">
+
+    <include
+        android:id="@+id/viewHiveToolBar"
+        layout="@layout/profile_bar"
+        android:layout_width="411dp"
+        android:layout_height="111dp"
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="0dp" />
+
+    <FrameLayout
+        android:id="@+id/frameLayout"
+        android:layout_width="358dp"
+        android:layout_height="535dp"
+        android:background="@drawable/bourder"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.49"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.653" >
+
+    </FrameLayout>
+
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/setup_profileimg"
+        android:layout_width="151dp"
+        android:layout_height="121dp"
+        android:layout_marginStart="105dp"
+        android:layout_marginLeft="105dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="106dp"
+        android:layout_marginRight="106dp"
+        android:layout_marginBottom="432dp"
+        android:src="@drawable/honey"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.51"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.392" />
+
+    <Button
+        android:id="@+id/setup_button"
+        android:layout_width="265dp"
+        android:layout_height="wrap_content"
+        android:background="#F8C471"
+        android:text="@string/save"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/setup_bio"
+        app:layout_constraintVertical_bias="0.161" />
+
+    <EditText
+        android:id="@+id/setup_username"
+        android:layout_width="265dp"
+        android:layout_height="57dp"
+
+        android:autofillHints=""
+        android:background="@drawable/sginin_style"
+        android:ems="10"
+        android:hint="@string/name"
+        android:inputType="textPersonName"
+        app:layout_constraintBottom_toTopOf="@+id/setup_bio"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.529"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/setup_profileimg"
+        app:layout_constraintVertical_bias="0.78" />
+
+    <EditText
+        android:id="@+id/setup_bio"
+        android:layout_width="265dp"
+        android:layout_height="98dp"
+
+
+        android:autofillHints=""
+        android:background="@drawable/sginin_style"
+        android:ems="10"
+        android:hint="@string/aaa"
+        android:inputType="textPersonName"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.529"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/setup_profileimg"
+        app:layout_constraintVertical_bias="0.413" />
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="51dp"
+        android:layout_height="39dp"
+        app:layout_constraintBottom_toBottomOf="@+id/setup_profileimg"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.638"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/setup_profileimg"
+        app:layout_constraintVertical_bias="1.0"
+        app:srcCompat="@drawable/plusbutton" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

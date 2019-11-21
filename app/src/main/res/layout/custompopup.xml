@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="350dp"
+    android:layout_height="250dp"
+    android:padding="5dp"
+    android:layout_gravity="center">
+
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/userimage"
+        android:layout_width="94dp"
+        android:layout_height="100dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="15dp"
+        android:src="@drawable/honey" />
+
+    <TextView
+        android:id="@+id/username"
+        android:layout_width="312dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="5dp"
+        android:gravity="center"
+        android:hint="username"
+        android:text="اسم المستخدم"
+        android:textColor="#0C0C0C"
+        android:textSize="24sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/userbio"
+        android:layout_width="311dp"
+        android:layout_height="55dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="5dp"
+        android:gravity="center|top"
+        android:hint="bio"
+        android:text="نبذة"
+        android:textColor="#050303" />
+</LinearLayout>

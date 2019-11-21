@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "579366098490",
+    "firebase_url": "https://hives-55fca.firebaseio.com",
+    "project_id": "hives-55fca",
+    "storage_bucket": "hives-55fca.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:579366098490:android:7ee52b62ea8aa6e1108703",
+        "android_client_info": {
+          "package_name": "com.example.hives"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "579366098490-cmm4q7m0ig01j4erss6j8j2a8k91i54k.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.hives",
+            "certificate_hash": "a919b69216a04e4d6c497d250682e66b7f806afb"
+          }
+        },
+        {
+          "client_id": "579366098490-7ohn7aa72ec2r5m7gnnrh7pcc1a9m0d1.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCI02-P8dbo_fNwtQBZAIZbWzYfmUfRgx0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "579366098490-7ohn7aa72ec2r5m7gnnrh7pcc1a9m0d1.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

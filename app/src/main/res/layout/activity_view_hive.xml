@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ViewHive">
+
+    <include
+        android:id="@+id/viewHiveToolBar"
+        layout="@layout/profile_bar"
+        android:layout_width="412dp"
+        android:layout_height="77dp" />
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/viewHivePic"
+        android:layout_width="113dp"
+        android:layout_height="99dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="147dp"
+        android:layout_marginLeft="147dp"
+        android:layout_marginTop="36dp"
+        android:src="@drawable/honey" />
+
+    <TextView
+        android:id="@+id/viewhivename"
+        android:layout_width="262dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/viewHivePic"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:layout_marginStart="75dp"
+        android:layout_marginLeft="75dp"
+        android:layout_marginTop="12dp"
+        android:gravity="center"
+        android:text="Hive Name"
+        android:textColor="#ED0A0A0A"
+        android:textSize="24sp"
+        android:textStyle="bold" />
+
+    <Button
+        android:id="@+id/UnjoinHivebtn"
+        android:layout_width="74dp"
+        android:layout_height="31dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="14dp"
+        android:layout_marginLeft="14dp"
+        android:layout_marginTop="94dp"
+        android:background="#E5E7E9"
+        android:text="انسحاب "
+        android:textStyle="bold"
+        android:textColor="@color/colorPrimary"
+        android:textSize="18sp"
+        />
+
+    <TextView
+        android:id="@+id/viewhiveInfo"
+        android:layout_width="339dp"
+        android:layout_height="39dp"
+        android:layout_below="@+id/viewhivename"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginStart="36dp"
+        android:layout_marginLeft="36dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginEnd="36dp"
+        android:layout_marginRight="36dp"
+        android:gravity="center"
+        android:text="Hive info"
+        android:textColor="#C30A0A0A"
+        android:textSize="14sp" />
+
+    <TextView
+        android:id="@+id/viewCreator"
+        android:layout_width="149dp"
+        android:layout_height="37dp"
+        android:layout_below="@+id/viewhiveInfo"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginRight="16dp"
+        android:gravity="center"
+        android:text="Created By"
+        android:textColor="#DF0A0A0A"
+        android:textSize="12sp"
+        android:textStyle="italic" />
+
+    <Button
+        android:id="@+id/joinHivebtn"
+        android:layout_width="74dp"
+        android:layout_height="31dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="15dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="96dp"
+        android:background="@color/colorPrimary"
+        android:text="انضمام"
+        android:textSize="18sp" />
+
+
+
+
+    <TextView
+        android:id="@+id/textView5"
+        android:layout_width="137dp"
+        android:layout_height="36dp"
+        android:layout_below="@+id/viewhiveInfo"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:layout_marginStart="18dp"
+        android:layout_marginLeft="18dp"
+        android:layout_marginTop="10dp"
+        android:gravity="center"
+        android:textColor="#CE070707"
+        android:textSize="12sp" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/showpost"
+        android:layout_width="match_parent"
+        android:layout_height="445dp"
+        android:layout_below="@+id/viewhiveInfo"
+        android:layout_marginTop="55dp" />
+
+    <Button
+        android:id="@+id/Addpostbtn"
+        android:layout_width="102dp"
+        android:layout_height="32dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginLeft="34dp"
+        android:layout_marginTop="94dp"
+        android:layout_marginEnd="6dp"
+        android:layout_marginRight="6dp"
+        android:background="@color/colorPrimary"
+        android:text="إنشاء رحيق"
+        android:textSize="18sp" />
+
+    <ImageView
+        android:id="@+id/EditHivebtn"
+        android:layout_width="41dp"
+        android:layout_height="37dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="338dp"
+        android:layout_marginLeft="338dp"
+        android:layout_marginTop="37dp"
+        android:src="@drawable/ededed"
+        android:visibility="invisible" />
+
+
+</RelativeLayout>

@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="10dp"
+    >
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/all_haive_profileImg"
+        android:layout_width="85dp"
+        android:layout_height="85dp"
+        android:layout_marginLeft="10dp"
+        android:src="@drawable/honey" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_margin="5dp">
+
+        <TextView
+            android:id="@+id/all_haive_profile_name"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:text="إسم الخلية"
+            android:textAlignment="textStart"
+            tools:ignore="RtlCompat"
+            android:textSize="18dp"
+            android:textStyle="bold"
+            android:layout_gravity="right"
+            />
+
+        <TextView
+            android:id="@+id/all_haive_profile_bio"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:text="وصف الخلية"
+            android:textAlignment="textStart"
+            android:textSize="16dp"
+            android:textStyle="bold"
+            android:layout_gravity="right"
+            tools:ignore="RtlCompat" />
+
+    </LinearLayout>
+
+
+</LinearLayout>
+

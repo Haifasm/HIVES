@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/nav_home"
+        android:icon="@drawable/beehive"
+        android:title="الرئيسية" />
+
+    <item
+        android:id="@+id/nav_search"
+        android:icon="@drawable/search"
+        android:title="بحث" />
+    <item
+        android:id="@+id/nav_jhives"
+        android:icon="@drawable/beeehive"
+        android:title="القفائر" />
+    <item
+    android:id="@+id/nav_notf"
+    android:icon="@drawable/notification"
+    android:title="اشعارات" />
+
+    <item
+        android:id="@+id/nav_profile"
+        android:icon="@drawable/bee"
+        android:title="الملف الشخصي" />
+
+</menu>

@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">HIVES</string>
+    <string name="username">userName</string>
+    <string name="name">اسم المستخدم</string>
+    <string name="save">حفظ</string>
+    <string name="usename">اسم المستخدم:</string>
+    <string name="aaa">نبذة</string>
+    <string name="title_activity_testprofile">testprofile</string>
+    <string name="tab_text_1">Tab 1</string>
+    <string name="tab_text_2">Tab 2</string>
+</resources>
