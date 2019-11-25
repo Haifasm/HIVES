@@ -15,13 +15,14 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseAuthException;
 import com.google.firebase.auth.FirebaseUser;
 
 public class Register extends AppCompatActivity {
 
 
 
-    private EditText userEmail, userPassword, userPassword2,userName;
+    private EditText userEmail, userPassword, userPassword2;
     private Button regBtn;
 
     private Button Gosignin;
@@ -40,9 +41,6 @@ public class Register extends AppCompatActivity {
 
         mtoolbar=(Toolbar)findViewById(R.id.createhivetoolbar);
         setSupportActionBar(mtoolbar);
-        //getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        //getSupportActionBar().setDisplayShowHomeEnabled(true);
-        //getSupportActionBar().setTitle("التسجيل");
 
 
         userEmail = findViewById(R.id.regMail);
@@ -68,45 +66,65 @@ public class Register extends AppCompatActivity {
                 final String Email =userEmail.getText().toString();
                 final String Password= userPassword.getText().toString();
                 final String Password2= userPassword2.getText().toString();
-                final String Name =userName.getText().toString();
 
-                if( Email.isEmpty() || Password.isEmpty() || Password2.isEmpty() || Name.isEmpty() || !Password.equals(Password2)){
-                    showMessage("Please Verify All Fields");
-
+                if( Email.isEmpty() || Password.isEmpty() || Password2.isEmpty()){
+                    showMessage("الرجاء تعبئة جميع الحقول.");
                 }
+                else if(!Password.equals(Password2)){
+                    showMessage("كلمة المرور غير متطابقة");
+                }
+
                 else {
 
-                    CreateUserAccount(Email,Name,Password);
+                    CreateUserAccount(Email,Password);
                 }
             }
         });
     }
 
-
-
-
-    private void CreateUserAccount(String email, String name, String password) {
+    private void CreateUserAccount(String email, String password) {
 
         mAuth.createUserWithEmailAndPassword(email,password)
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
-            @Override
-            public void onComplete(@NonNull Task<AuthResult> task) {
-                if (task.isSuccessful()) {
-                    FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-                    user.sendEmailVerification();
-                    showMessage("تم التسجيل، تفقد البريد الالكتروني لتسجيل الدخول...");
-                    sendUserToLoginActivity();
-                }
-                else
-                   showMessage("حدث خطأ...");
-            }
-        });
+                    @Override
+                    public void onComplete(@NonNull Task<AuthResult> task) {
+                        if (task.isSuccessful()) {
+                            FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+                            user.sendEmailVerification();
+                            showMessage("تم التسجيل، تفقد البريد الالكتروني لتسجيل الدخول...");
+                            sendUserToLoginActivity();
+                        }
+                        else{
+
+                            String errorCode = ((FirebaseAuthException) task.getException()).getErrorCode();
+                            showMessage(errorCode);
+
+                            switch (errorCode) {
+
+                                case "ERROR_EMAIL_ALREADY_IN_USE":
+                                    showMessage("البريد الإلكتروني مسجل مسبقًا.");
+                                    break;
+
+                                case "ERROR_USER_MISMATCH":
+                                    showMessage("البريد الإلكتروني مسجل مسبقًا.");
+                                    break;
+
+                                case "ERROR_INVALID_EMAIL":
+                                    showMessage("الرجاء إدخال بريد إلكتروني صحيح.");
+                                    break;
+
+                                case "ERROR_WEAK_PASSWORD":
+                                    showMessage("يجب أن تتكون كلمة المرور من ٦ أحرف على الأقل.");
+                                    break;
 
 
+                            }
 
+                        }
+
+                    }
+                });
     }
-
-    // method to show a message
     private void showMessage(String message) {
 
         Toast.makeText(getApplicationContext(), message,Toast.LENGTH_LONG).show();

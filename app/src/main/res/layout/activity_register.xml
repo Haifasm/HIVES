@@ -54,6 +54,24 @@
         app:layout_constraintTop_toTopOf="@+id/frameLayout"
         app:srcCompat="@drawable/logoonly" />
 
+    <TextView
+        android:textSize="15dp"
+        android:textColor="#322120"
+        android:id="@+id/textView14"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="البريد الإلكتروني"
+        app:layout_constraintBottom_toTopOf="@+id/regMail"
+        app:layout_constraintEnd_toEndOf="@+id/regMail" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="*"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/regMail"
+        app:layout_constraintEnd_toStartOf="@+id/textView14"
+        android:textColor="#DD0404"/>
 
     <EditText
         android:id="@+id/regMail"
@@ -61,28 +79,68 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
         android:background="@drawable/sginin_style"
+        android:gravity="top|right"
         android:ems="10"
-        android:hint="البريد الإلكتروني"
+        android:hint="example@gmail.com"
+        android:textSize="15dp"
         android:inputType="textPersonName"
         app:layout_constraintEnd_toEndOf="@+id/frameLayout"
         app:layout_constraintStart_toStartOf="@+id/frameLayout"
         app:layout_constraintTop_toBottomOf="@+id/imageView3" />
 
 
+    <TextView
+        android:textColor="#322120"
+        android:id="@+id/textView15"
+        android:textSize="15dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="كلمة المرور"
+        app:layout_constraintBottom_toTopOf="@+id/regPass"
+        app:layout_constraintEnd_toEndOf="@+id/regPass" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="*"
+        android:textColor="#DD0404"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/regPass"
+        app:layout_constraintEnd_toStartOf="@+id/textView15" />
     <EditText
         android:id="@+id/regPass"
         android:layout_width="265dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
+        android:textSize="15dp"
         android:background="@drawable/sginin_style"
         android:ems="10"
         android:gravity="top|right"
-        android:hint="كلمة المرور"
+        android:hint="********"
         android:inputType="textPassword"
         app:layout_constraintEnd_toEndOf="@+id/frameLayout"
         app:layout_constraintStart_toStartOf="@+id/frameLayout"
         app:layout_constraintTop_toBottomOf="@+id/regMail" />
 
+
+    <TextView
+        android:textColor="#322120"
+        android:id="@+id/textView16"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="تأكيد كلمة المرور"
+        android:textSize="15dp"
+        app:layout_constraintBottom_toTopOf="@+id/regPass2"
+        app:layout_constraintEnd_toEndOf="@+id/regPass2" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="*"
+        android:textColor="#DD0404"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/regPass2"
+        app:layout_constraintEnd_toStartOf="@+id/textView16" />
     <EditText
         android:id="@+id/regPass2"
         android:layout_width="265dp"
@@ -90,8 +148,9 @@
         android:layout_marginTop="20dp"
         android:background="@drawable/sginin_style"
         android:ems="10"
+        android:textSize="15dp"
         android:gravity="top|right"
-        android:hint="تأكيد كلمة المرور"
+        android:hint="********"
         android:inputType="textPassword"
         app:layout_constraintEnd_toEndOf="@+id/frameLayout"
         app:layout_constraintStart_toStartOf="@+id/frameLayout"
@@ -102,7 +161,7 @@
         android:layout_width="265dp"
         android:layout_height="wrap_content"
         android:background="#F8C471"
-        android:text="تسجيل"
+        android:text="التسجيل"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
