@@ -1,7 +1,7 @@
 {
     "logs": [
         {
-            "outputFile": "/Users/uni/Desktop/App Hives/old comments 2/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-fi/values-fi.xml",
+            "outputFile": "/Users/uni/Android studio projects/HIVES-Final/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-fi/values-fi.xml",
             "map": [
                 {
                     "source": "/Users/uni/.gradle/caches/transforms-2/files-2.1/6b93e59c60b20230eb42a7fc46db04dd/jetified-play-services-basement-16.1.0/res/values-fi/values.xml",

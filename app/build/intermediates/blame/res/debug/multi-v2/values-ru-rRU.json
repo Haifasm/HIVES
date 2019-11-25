@@ -1,7 +1,7 @@
 {
     "logs": [
         {
-            "outputFile": "/Users/uni/Desktop/App Hives/old comments 2/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-ru-rRU/values-ru-rRU.xml",
+            "outputFile": "/Users/uni/Android studio projects/HIVES-Final/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-ru-rRU/values-ru-rRU.xml",
             "map": [
                 {
                     "source": "/Users/uni/.gradle/caches/transforms-2/files-2.1/58c484ceac69994e19f401b4c535951a/android-image-cropper-2.8.0/res/values-ru-rRU/values-ru-rRU.xml",
