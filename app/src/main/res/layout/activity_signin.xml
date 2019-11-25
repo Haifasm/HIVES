@@ -4,8 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="SigninActivity"
-    android:background="#ffffff">
+    android:background="#ffffff"
+    tools:context="SigninActivity">
 
     <include
         android:id="@+id/viewHiveToolBar"
@@ -40,20 +40,39 @@
 
         app:layout_constraintVertical_bias="0.653">
 
-    </FrameLayout>
 
+    </FrameLayout>
 
     <ImageView
         android:id="@+id/imageView3"
         android:layout_width="166dp"
         android:layout_height="98dp"
+        android:layout_marginTop="8dp"
         app:layout_constraintBottom_toTopOf="@+id/regName"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/frameLayout"
-        android:layout_marginTop="8dp"
         app:srcCompat="@drawable/logoonly" />
 
+
+    <TextView
+        android:id="@+id/textView14"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="البريد الإلكتروني"
+        android:textColor="#322120"
+        android:textSize="15dp"
+        app:layout_constraintBottom_toTopOf="@+id/signin_Mail"
+        app:layout_constraintEnd_toEndOf="@+id/signin_Mail" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="*"
+        android:textColor="#DD0404"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/signin_Mail"
+        app:layout_constraintEnd_toStartOf="@+id/textView14" />
 
     <EditText
         android:id="@+id/signin_Mail"
@@ -68,6 +87,24 @@
         app:layout_constraintStart_toStartOf="@+id/frameLayout"
         app:layout_constraintTop_toBottomOf="@+id/imageView3" />
 
+    <TextView
+        android:id="@+id/textView15"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="كلمة المرور"
+        android:textColor="#322120"
+        android:textSize="15dp"
+        app:layout_constraintBottom_toTopOf="@+id/signin_Password"
+        app:layout_constraintEnd_toEndOf="@+id/signin_Password" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="*"
+        android:textColor="#DD0404"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/signin_Password"
+        app:layout_constraintEnd_toStartOf="@+id/textView15" />
 
     <EditText
         android:id="@+id/signin_Password"
@@ -89,13 +126,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="هل نسيت كلمة المرور؟"
-        android:textStyle="bold"
         android:textColor="#3D51B8"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.761"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/signin_Password"
-        app:layout_constraintVertical_bias="0.118" />
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="@+id/signin_Password"
+        app:layout_constraintTop_toBottomOf="@+id/signin_Password" />
 
     <Button
 
@@ -111,8 +145,6 @@
         app:layout_constraintVertical_bias="0.192" />
 
 
-
-
     <Button
         android:id="@+id/gosignup"
         android:layout_width="265dp"
@@ -126,10 +158,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/signinBtn"
         app:layout_constraintVertical_bias="0.216" />
-
-
-
-
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

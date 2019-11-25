@@ -15,6 +15,7 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseAuthException;
 import com.google.firebase.auth.FirebaseUser;
 
 public class SigninActivity extends AppCompatActivity {
@@ -47,8 +48,8 @@ public class SigninActivity extends AppCompatActivity {
         Forgotpass.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-               //forgot password page
-               startActivity(new Intent(SigninActivity.this, ForgotPasswordActivity.class));
+                //forgot password page
+                startActivity(new Intent(SigninActivity.this, ForgotPasswordActivity.class));
             }
         });
 
@@ -63,18 +64,18 @@ public class SigninActivity extends AppCompatActivity {
                 final String Password = userPassword.getText().toString();
 
                 if( Email.isEmpty() || Password.isEmpty()){
-                    showMessage("Please Verify All Field");
+                    showMessage("الرجاء تعبئة جميع الحقول.");
                 }
                 else{
                     signin(Email,Password);
                     FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
                     // boolean emailVerified = user.isEmailVerified();
                     //if(!(user.isEmailVerified())){
-                        //FirebaseAuth.getInstance().signOut();
-                       // Intent logoIntent = new Intent(SigninActivity.this, SigninActivity.class);
-                      //  logoIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                       // startActivity(logoIntent);
-                       // showMessage("الرجاء التحقق من البريد الالكتروني");
+                    //FirebaseAuth.getInstance().signOut();
+                    // Intent logoIntent = new Intent(SigninActivity.this, SigninActivity.class);
+                    //  logoIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                    // startActivity(logoIntent);
+                    // showMessage("الرجاء التحقق من البريد الالكتروني");
                     //}
                 }
 
@@ -87,7 +88,7 @@ public class SigninActivity extends AppCompatActivity {
         super.onStart();
 
         FirebaseUser currentUser=mAuth.getCurrentUser();
-       if (currentUser!=null&&currentUser.isEmailVerified())
+        if (currentUser!=null&&currentUser.isEmailVerified())
         {
 
             SendUserToMainActivity();
@@ -112,8 +113,33 @@ public class SigninActivity extends AppCompatActivity {
                     }
                 }
                 else {
-                    showMessage("الرجاء التأكد من البريد الالكتروني وكلمة المرور...");
-                   // showMessage(task.getException().getMessage());
+
+
+                    String errorCode = ((FirebaseAuthException) task.getException()).getErrorCode();
+
+                    switch (errorCode) {
+
+
+
+
+                        case "ERROR_INVALID_EMAIL":
+                            showMessage("الرجاء إدخال بريد إلكتروني صحيح.");
+                            break;
+
+                        case "ERROR_WRONG_PASSWORD":
+                            showMessage("كلمة المرور خاطئة.");
+                            break;
+
+
+
+                        case "ERROR_USER_NOT_FOUND":
+                            showMessage("لايوجد حساب الرجاء التسجيل.");
+                            break;
+
+
+
+                    }
+
                 }
 
             }
