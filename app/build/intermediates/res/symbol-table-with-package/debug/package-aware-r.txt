@@ -1144,6 +1144,8 @@ drawable ededed
 drawable editttttt
 drawable googleg_disabled_color_18
 drawable googleg_standard_color_18
+drawable graybrokenheart
+drawable grayheart1
 drawable honey
 drawable honeycombpng
 drawable ic_launcher_background
@@ -1171,6 +1173,8 @@ drawable notification_template_icon_bg
 drawable notification_template_icon_low_bg
 drawable notification_tile_bg
 drawable notify_panel_notification_icon_bg
+drawable orangebrokenheart
+drawable orangeheart
 drawable plusbutton
 drawable search
 drawable send
@@ -1190,11 +1194,13 @@ id CTRL
 id ConstraintLayout
 id CropOverlayView
 id CropProgressBar
+id DisLikebtn
 id EditHivebtn
 id FPbtn
 id FPemail
 id FUNCTION
 id ImageView_image
+id Likebtn
 id META
 id OpenPopUpBtn
 id SHIFT
@@ -1441,6 +1447,8 @@ id normal
 id notification_background
 id notification_main_column
 id notification_main_column_container
+id numOfDisLikes
+id numOfLikes
 id off
 id on
 id onTouch
@@ -1560,6 +1568,9 @@ id textView10
 id textView11
 id textView12
 id textView13
+id textView14
+id textView15
+id textView16
 id textView2
 id textView3
 id textView4
@@ -1595,7 +1606,6 @@ id userimage
 id userimginactivity
 id username
 id view
-id view2
 id viewCreator
 id viewHivePic
 id viewHiveToolBar
