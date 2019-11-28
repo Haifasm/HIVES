@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="450dp"
+    android:layout_height="wrap_content"
     android:layout_margin="10dp"
     app:cardCornerRadius="8dp"
     app:cardElevation="10dp">
@@ -14,30 +14,89 @@
         android:orientation="vertical">
 
         <de.hdodenhof.circleimageview.CircleImageView
+            android:layout_marginTop="10dp"
             android:id="@+id/hiveimg"
             android:layout_width="85dp"
             android:layout_height="74dp"
             android:src="@drawable/honey"
-            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.993"
+            app:layout_constraintTop_toTopOf="parent" />
+
+
+        <TextView
+            android:id="@+id/user_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="right"
+            android:text="username"
+            android:textColor="#070404"
+            android:textSize="18sp"
+            app:layout_constraintEnd_toStartOf="@+id/hiveimg"
+            app:layout_constraintTop_toBottomOf="@+id/hive_name" />
+
+
+        <TextView
+            android:id="@+id/post_content"
+            android:layout_width="341dp"
+            android:layout_height="wrap_content"
+
+            android:ellipsize="end"
+
+
+
+
+
+            android:gravity="right"
+            android:maxLines="4"
+            android:text="content"
+            android:textColor="#000000"
+            android:textSize="18sp"
+
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.028" />
+            app:layout_constraintTop_toBottomOf="@+id/hiveimg" />
+
+
+        <ImageView
+            android:id="@+id/post_image"
+            android:layout_width="388dp"
+            android:layout_height="175dp"
+            android:scaleType="centerCrop"
+            app:layout_constraintTop_toBottomOf="@+id/post_content"
+            tools:layout_editor_absoluteX="2dp" />
+
+
+        <TextView
+            android:layout_marginRight="10dp"
+            android:id="@+id/post_date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="التاريخ"
+            android:textColor="@android:color/black"
+            android:textSize="13sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/post_image" />
+
+        <TextView
+            android:id="@+id/textView9"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text=" - "
+            android:textColor="@android:color/black"
+            android:textSize="13sp"
+            app:layout_constraintEnd_toStartOf="@+id/post_date"
+            app:layout_constraintTop_toBottomOf="@+id/post_image" />
 
         <TextView
             android:id="@+id/post_title"
-            android:layout_width="85dp"
-            android:layout_height="18dp"
-            android:layout_gravity="center_horizontal"
-            android:layout_margin="10dp"
-            android:textSize="14sp"
-            app:layout_constraintBottom_toTopOf="@+id/post_image"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.006"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/post_date"
-            app:layout_constraintVertical_bias="0.0" />
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="الوقت"
+            android:textColor="@android:color/black"
+            android:textSize="13sp"
+            app:layout_constraintEnd_toStartOf="@+id/textView9"
+            app:layout_constraintTop_toBottomOf="@+id/post_image" />
+
 
         <TextView
             android:id="@+id/hive_name"
@@ -48,66 +107,9 @@
             android:textColor="#070606"
             android:textSize="30sp"
             android:textStyle="bold"
-            app:layout_constraintBottom_toTopOf="@+id/post_image"
             app:layout_constraintEnd_toStartOf="@+id/hiveimg"
-            app:layout_constraintHorizontal_bias="0.919"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.082" />
+            app:layout_constraintTop_toTopOf="parent" />
 
-        <ImageView
-            android:id="@+id/post_image"
-            android:layout_width="388dp"
-            android:layout_height="175dp"
-            android:layout_marginBottom="52dp"
-            android:scaleType="centerCrop"
-            android:src="@drawable/honey"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
-
-        <TextView
-            android:id="@+id/post_content"
-            android:layout_width="341dp"
-            android:layout_height="120dp"
-            android:layout_marginTop="41dp"
-            android:layout_marginBottom="108dp"
-            android:gravity="right"
-            android:text="TextView"
-            android:textColor="#000000"
-            android:textSize="18sp"
-            app:layout_constraintBottom_toBottomOf="@+id/post_image"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.409"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/post_title"
-            app:layout_constraintVertical_bias="0.109" />
-
-        <TextView
-            android:id="@+id/post_date"
-            android:layout_width="81dp"
-            android:layout_height="19dp"
-            android:layout_marginBottom="188dp"
-            android:text="date"
-            app:layout_constraintBottom_toTopOf="@+id/post_image"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.051"
-            app:layout_constraintStart_toStartOf="parent" />
-
-        <TextView
-            android:id="@+id/user_name"
-            android:layout_width="141dp"
-            android:layout_height="25dp"
-            android:gravity="right"
-            android:text="TextView"
-            android:textColor="#070404"
-            android:textSize="18sp"
-            app:layout_constraintBottom_toTopOf="@+id/post_content"
-            app:layout_constraintEnd_toStartOf="@+id/hiveimg"
-            app:layout_constraintHorizontal_bias="0.963"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/hive_name"
-            app:layout_constraintVertical_bias="0.333" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

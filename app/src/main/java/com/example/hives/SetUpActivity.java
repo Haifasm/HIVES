@@ -110,7 +110,7 @@ public class SetUpActivity extends AppCompatActivity {
                         
                     }
                     else{
-                        Toast.makeText(SetUpActivity.this, "الرجاء اختيار صورة العرض", Toast.LENGTH_SHORT).show();
+                       // Toast.makeText(SetUpActivity.this, "الرجاء اختيار صورة العرض", Toast.LENGTH_SHORT).show();
                     }
                     
                 }

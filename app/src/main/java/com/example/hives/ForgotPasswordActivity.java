@@ -47,14 +47,14 @@ public class ForgotPasswordActivity extends AppCompatActivity {
                 String Email =mail.getText().toString();
 
                 if (Email.isEmpty()){
-                    Toast.makeText(getApplicationContext(),"ادخل بريدك الالكتروني",Toast.LENGTH_LONG).show();
+                    Toast.makeText(getApplicationContext(),"ادخل بريدك الإلكتروني",Toast.LENGTH_LONG).show();
                 }
                 else{
                     mAuth.sendPasswordResetEmail(Email).addOnCompleteListener(new OnCompleteListener<Void>() {
                         @Override
                         public void onComplete(@NonNull Task<Void> task) {
                             if(task.isSuccessful()){
-                                Toast.makeText(getApplicationContext(),"لقد تم ارسال رسالة التفعيل الى بريدك الالكتروني",Toast.LENGTH_LONG).show();
+                                Toast.makeText(getApplicationContext(),"لقد تم ارسال رسالة تغيير كلمة المرور إلى بريدك الإلكتروني",Toast.LENGTH_LONG).show();
                                 startActivity(new Intent(ForgotPasswordActivity.this,SigninActivity.class));
 
                             }

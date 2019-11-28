@@ -8,6 +8,7 @@ import android.text.TextUtils;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -140,24 +141,17 @@ public class NotificationActivity extends AppCompatActivity {
 
 
 
-        commentRef.addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                if(dataSnapshot.hasChildren())
-                    nonot.setVisibility(View.INVISIBLE);
 
-            }
 
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-
-            }
-        });
-
+        if(firebaseRecyclerAdapter.getItemCount()==0)
+            activitylist.setVisibility(View.INVISIBLE);
+        else
         activitylist.setAdapter(firebaseRecyclerAdapter);
 
 
     }
+
+
     public static class ActivityViewHolder extends RecyclerView.ViewHolder{
         View mView;
 

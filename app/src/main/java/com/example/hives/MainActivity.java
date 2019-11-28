@@ -2,6 +2,7 @@ package com.example.hives;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -12,7 +13,9 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 //import com.google.firebase.database.Query;
@@ -331,7 +334,8 @@ public class MainActivity extends AppCompatActivity {
     }
     public void setPostimage(Context ctx, String postimage){
          img= mViwe.findViewById(R.id.post_image);
-        //Glide.with(ctx).load(postimage).into(img);
+         if(postimage==null)
+             img.getLayoutParams().height=0;
         Picasso.get().load(postimage).into(img);
     }
     public void setTime(String time){

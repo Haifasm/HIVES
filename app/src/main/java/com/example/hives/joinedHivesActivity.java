@@ -48,8 +48,7 @@ public class joinedHivesActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_joined_hives);
-        nothing=findViewById(R.id.view2);
-        nothing.setVisibility(View.INVISIBLE);
+
         bottomnav = (BottomNavigationView) findViewById(R.id.bottom_navigation);
         bottomnav.setSelectedItemId(R.id.nav_jhives);
         bottomnav.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -60,7 +59,7 @@ public class joinedHivesActivity extends AppCompatActivity {
             }
         });
         explore = findViewById(R.id.textView11);
-        explore.setVisibility(View.INVISIBLE);
+        //explore.setVisibility(View.INVISIBLE);
         explore.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -124,10 +123,11 @@ public class joinedHivesActivity extends AppCompatActivity {
 
             };
 
+            if(firebaseRecyclerAdapter.getItemCount()==0)
+                recyclerView.setVisibility(View.INVISIBLE);
+            else
             recyclerView.setAdapter(firebaseRecyclerAdapter);
-            if (firebaseRecyclerAdapter==null){
-                nothing.setVisibility(View.VISIBLE);
-            }
+
 
 
 
