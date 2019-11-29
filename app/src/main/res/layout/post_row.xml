@@ -67,15 +67,14 @@
 
 
         <TextView
-            android:layout_marginRight="10dp"
             android:id="@+id/post_date"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="التاريخ"
             android:textColor="@android:color/black"
             android:textSize="13sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/post_image" />
+            app:layout_constraintStart_toEndOf="@+id/textView9"
+            tools:layout_editor_absoluteY="46dp" />
 
         <TextView
             android:id="@+id/textView9"
@@ -84,19 +83,20 @@
             android:text=" - "
             android:textColor="@android:color/black"
             android:textSize="13sp"
-            app:layout_constraintEnd_toStartOf="@+id/post_date"
-            app:layout_constraintTop_toBottomOf="@+id/post_image" />
+            app:layout_constraintStart_toEndOf="@+id/post_title"
+            tools:layout_editor_absoluteY="46dp" />
 
         <TextView
             android:id="@+id/post_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:layout_marginLeft="24dp"
             android:text="الوقت"
             android:textColor="@android:color/black"
             android:textSize="13sp"
-            app:layout_constraintEnd_toStartOf="@+id/textView9"
-            app:layout_constraintTop_toBottomOf="@+id/post_image" />
-
+            app:layout_constraintStart_toStartOf="parent"
+            tools:layout_editor_absoluteY="46dp" />
 
         <TextView
             android:id="@+id/hive_name"

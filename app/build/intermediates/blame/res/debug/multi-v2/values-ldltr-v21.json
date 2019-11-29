@@ -1,10 +1,10 @@
 {
     "logs": [
         {
-            "outputFile": "/Users/noura./Desktop/Project444/HIVES-Final/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-ldltr-v21/values-ldltr-v21.xml",
+            "outputFile": "/Users/raghadalnassar/Desktop/HIVES-1Nf/HIVES-Final/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-ldltr-v21/values-ldltr-v21.xml",
             "map": [
                 {
-                    "source": "/Users/noura./.gradle/caches/transforms-2/files-2.1/78d780e7e979f381c0cb40b5ded8691d/appcompat-1.1.0/res/values-ldltr-v21/values-ldltr-v21.xml",
+                    "source": "/Users/raghadalnassar/.gradle/caches/transforms-2/files-2.1/78d780e7e979f381c0cb40b5ded8691d/appcompat-1.1.0/res/values-ldltr-v21/values-ldltr-v21.xml",
                     "from": {
                         "startLines": "2",
                         "startColumns": "4",
