@@ -56,7 +56,7 @@ public class ViewPost extends AppCompatActivity implements PopUpDelPost.ExampleD
 
     private String PostKey, currentuserid;
 
-    private DatabaseReference ClickPostRef,PostRef,UserRef,disLikeRef,LikeRef;
+    private DatabaseReference ClickPostRef,PostRef,UserRef,disLikeRef,LikeRef,PostReference,PostRef2;
 
     private RecyclerView CommentsList;
     CommentsAdapter commentsAdapter;
@@ -87,7 +87,7 @@ public class ViewPost extends AppCompatActivity implements PopUpDelPost.ExampleD
     private boolean LikeCheker=false;
     private  int countLikes,countDisLikes;
     private  ImageButton LikeBtn,DislikeBtn ;
-    private String LikeState;
+    private String LikeState,disLikeState;
 
 
 
@@ -108,6 +108,104 @@ public class ViewPost extends AppCompatActivity implements PopUpDelPost.ExampleD
         mAuth=FirebaseAuth.getInstance();
         currentuserid=mAuth.getCurrentUser().getUid();
         commentRef= FirebaseDatabase.getInstance().getReference().child("Comments");
+
+
+// Noura
+
+        NumberOfLikes=(TextView)findViewById(R.id.numOfLikes);
+        NumberOfdisLikes=(TextView)findViewById(R.id.numOfDisLikes);
+        PostReference = FirebaseDatabase.getInstance().getReference().child("Posts");
+        disLikeRef =FirebaseDatabase.getInstance().getReference().child("Posts").child(PostKey).child("disLike");
+        LikeRef=FirebaseDatabase.getInstance().getReference().child("Posts").child(PostKey).child("Like");
+        PostRef2 = FirebaseDatabase.getInstance().getReference().child("Posts").child(PostKey);
+        LikeBtn= (ImageButton)findViewById(R.id.Likebtn);
+        DislikeBtn= (ImageButton)findViewById(R.id.DisLikebtn);
+        LikeMaintainStatus();
+        DisLikeMaintainStatus();
+
+
+        LikeBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                LikeCheker = true;
+                LikeRef.addValueEventListener(new ValueEventListener() {
+                    @Override
+
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+
+                        if (LikeCheker) {
+                            if (dataSnapshot.hasChild(currentuserid)) {
+                                // olrady liked
+                                LikeRef.child(currentuserid).setValue(null);
+                                LikeCheker = false;
+                                LikeBtn.setImageResource(R.drawable.grayheart1);
+                                DislikeBtn.setEnabled(true);
+                            } else {
+                                // not liked yet
+                                HashMap like = new HashMap();
+                                like.put(currentuserid, true);
+                                LikeRef.updateChildren(like);
+                                LikeCheker = false;
+                                LikeBtn.setImageResource(R.drawable.orangeheart);
+                                DislikeBtn.setEnabled(false);
+                            }
+
+                        }
+                        countDisLikes = (int)dataSnapshot.getChildrenCount();
+                        NumberOfLikes.setText(((countDisLikes) + "Likes"));
+                    }
+
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                    }
+
+
+                });
+            }
+
+        });
+
+        DislikeBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                LikeCheker = true;
+                disLikeRef.addValueEventListener(new ValueEventListener() {
+
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                        if (LikeCheker) {
+                            if (dataSnapshot.hasChild(currentuserid)) {
+                                // olrady disliked
+                                disLikeRef.child(currentuserid).setValue(null);
+                                DislikeBtn.setImageResource(R.drawable.graybrokenheart);
+                                LikeBtn.setEnabled(true);
+                                LikeCheker = false;
+                            } else {
+                                // not disliked yet
+                                HashMap disLike = new HashMap();
+                                disLike.put(currentuserid, true);
+                                disLikeRef.updateChildren(disLike);
+                                LikeCheker = false;
+                                DislikeBtn.setImageResource(R.drawable.orangebrokenheart);
+                                LikeBtn.setEnabled(false);
+                            }
+
+                        }
+                        countDisLikes = (int) dataSnapshot.getChildrenCount();
+                        NumberOfdisLikes.setText(((countDisLikes) + " dislikes"));
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError databaseError) {
+                    }
+                });
+
+            }
+        });
+
+
 
         HiveRef =FirebaseDatabase.getInstance().getReference().child("Posts").child(PostKey);
         HiveRef.addValueEventListener(new ValueEventListener() {
@@ -199,9 +297,6 @@ public class ViewPost extends AppCompatActivity implements PopUpDelPost.ExampleD
                 });
             }
         });
-
-
-
 
 
         ClickPostRef.addValueEventListener(new ValueEventListener() {
@@ -301,101 +396,10 @@ public class ViewPost extends AppCompatActivity implements PopUpDelPost.ExampleD
         });
 
 
-        // Noura
-
-        NumberOfLikes=(TextView)findViewById(R.id.numOfLikes);
-        NumberOfdisLikes=(TextView)findViewById(R.id.numOfDisLikes);
-        PostRef = FirebaseDatabase.getInstance().getReference().child("Posts");
-        disLikeRef =FirebaseDatabase.getInstance().getReference().child("Posts").child(PostKey).child("disLike");
-        LikeRef=FirebaseDatabase.getInstance().getReference().child("Posts").child(PostKey).child("Like");
-        LikeBtn= (ImageButton)findViewById(R.id.Likebtn);
-        DislikeBtn= (ImageButton)findViewById(R.id.DisLikebtn);
-        LikeMaintainStatus();
-        DisLikeMaintainStatus();
-
-        LikeBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                LikeCheker = true;
-                LikeRef.addValueEventListener(new ValueEventListener() {
-                    @Override
-
-                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-
-                        if (LikeCheker) {
-                            if (dataSnapshot.hasChild(currentuserid)) {
-                                // olrady liked
-                                LikeRef.child(currentuserid).setValue(null);
-                                LikeCheker = false;
-                                LikeBtn.setImageResource(R.drawable.grayheart1);
-                                DislikeBtn.setEnabled(true);
-                            } else {
-                                // not liked yet
-                                HashMap like = new HashMap();
-                                like.put(currentuserid, true);
-                                LikeRef.updateChildren(like);
-                                LikeCheker = false;
-                                LikeBtn.setImageResource(R.drawable.orangeheart);
-                                DislikeBtn.setEnabled(false);
-                            }
-
-                        }
-                        countDisLikes = (int) dataSnapshot.getChildrenCount();
-                        NumberOfLikes.setText(((countDisLikes) + "Likes"));
-                    }
-
-
-                    @Override
-                    public void onCancelled(@NonNull DatabaseError databaseError) {
-
-                    }
-
-
-                });
-            }
-
-        });
-
-        DislikeBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                LikeCheker = true;
-                disLikeRef.addValueEventListener(new ValueEventListener() {
-
-                    @Override
-                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                        if (LikeCheker) {
-                            if (dataSnapshot.hasChild(currentuserid)) {
-                                // olrady disliked
-                                disLikeRef.child(currentuserid).setValue(null);
-                                LikeCheker = false;
-                                DislikeBtn.setImageResource(R.drawable.graybrokenheart);
-                                LikeBtn.setEnabled(true);
-                            } else {
-                                // not disliked yet
-                                HashMap disLike = new HashMap();
-                                disLike.put(currentuserid, true);
-                                disLikeRef.updateChildren(disLike);
-                                LikeCheker = false;
-                                DislikeBtn.setImageResource(R.drawable.orangebrokenheart);
-                                LikeBtn.setEnabled(false);
-                            }
-                            countDisLikes = (int) dataSnapshot.getChildrenCount();
-                            NumberOfdisLikes.setText(((countDisLikes) + " dislikes"));
-                        }
-                    }
-
-                    @Override
-                    public void onCancelled(@NonNull DatabaseError databaseError) {
-                    }
-                });
-
-            }
-        });
-
-
 
     }
+
+
     private void iniRvComment() {
 
         CommentsList.setLayoutManager(new LinearLayoutManager(this));
@@ -661,10 +665,9 @@ public class ViewPost extends AppCompatActivity implements PopUpDelPost.ExampleD
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 
 
-                if (dataSnapshot.exists()&&(!mAuth.getCurrentUser().getUid().equals(dataSnapshot.child("uid").getValue().toString()))){
-                    countLikes = (int) dataSnapshot.child("Like").getChildrenCount();
-                    NumberOfLikes.setText(((countLikes) + "Likes"));
-
+                if ((dataSnapshot.exists())&&(!mAuth.getCurrentUser().getUid().equals(dataSnapshot.child("uid").getValue().toString()))){
+                   // countLikes = (int) dataSnapshot.child("Like").getChildrenCount();
+                  //  NumberOfLikes.setText(((countLikes) + "Likes"));
                     if(dataSnapshot.child("Like").hasChild(currentuserid)){
                         LikeState ="Liked";
                         LikeBtn.setImageResource(R.drawable.orangeheart);
@@ -674,7 +677,8 @@ public class ViewPost extends AppCompatActivity implements PopUpDelPost.ExampleD
                         LikeState="NotLiked";
                     }
                 }
-
+                countLikes = (int) dataSnapshot.child("Like").getChildrenCount();
+                NumberOfLikes.setText(((countLikes) + " Likes"));
             }
 
             @Override
@@ -690,20 +694,27 @@ public class ViewPost extends AppCompatActivity implements PopUpDelPost.ExampleD
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 
-
                 if (dataSnapshot.exists()&&(!mAuth.getCurrentUser().getUid().equals(dataSnapshot.child("uid").getValue().toString()))){
-                    countDisLikes = (int) dataSnapshot.child("disLike").getChildrenCount();
-                    NumberOfdisLikes.setText(((countDisLikes) + " Dislikes"));
+
+                    //countDisLikes = (int) dataSnapshot.child("disLike").getChildrenCount();
+                   // NumberOfdisLikes.setText(((countDisLikes) + " Dislikes"));
 
                     if(dataSnapshot.child("disLike").hasChild(currentuserid)){
-                        LikeState ="DisLiked";
+                        disLikeState ="DisLiked";
                         DislikeBtn.setImageResource(R.drawable.orangebrokenheart);
                         ///make sure not disLiked
                         LikeBtn.setEnabled(false);
                     }else {
-                        LikeState="NotDisLiked";
-                    }
+                        disLikeState="NotDisLiked";
+
+                } }
+                if(mAuth.getCurrentUser().getUid().equals(dataSnapshot.child("uid").getValue().toString())) {
+                    LikeBtn.setEnabled(false);
+                    DislikeBtn.setEnabled(false);
                 }
+                countDisLikes = (int) dataSnapshot.child("disLike").getChildrenCount();
+                NumberOfdisLikes.setText(((countDisLikes) + " Dislikes"));
+
 
             }
 

@@ -113,69 +113,55 @@
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:padding="2dp"
-                android:layout_marginLeft="5dp">
+                android:layout_height="match_parent"
+                tools:layout_editor_absoluteY="179dp">
 
-
-                <TextView
-                    android:id="@+id/numOfDisLikes"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginEnd="172dp"
-                    android:layout_marginRight="172dp"
-                    android:text="0 Dislikes"
-                    android:textColor="@android:color/black"
-
-                    android:textSize="14sp"
-                    android:textStyle="bold"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintVertical_bias="0.615" />
-
-                <TextView
-                    android:id="@+id/numOfLikes"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="0 Like "
-                    android:textColor="@android:color/black"
-
-                    android:textSize="14sp"
-                    android:textStyle="bold"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toStartOf="@+id/DisLikebtn"
-                    app:layout_constraintHorizontal_bias="0.32"
-                    app:layout_constraintStart_toEndOf="@+id/Likebtn"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintVertical_bias="0.615" />
-
-                <ImageButton
-                    android:id="@+id/Likebtn"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="16dp"
-                    android:layout_marginLeft="16dp"
-                    android:layout_marginTop="4dp"
-                    android:background="#00FFFFFF"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:srcCompat="@drawable/grayheart1" />
 
                 <ImageButton
                     android:id="@+id/DisLikebtn"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="4dp"
-                    android:layout_marginEnd="12dp"
-                    android:layout_marginRight="12dp"
+                    android:layout_marginTop="2dp"
+                    android:layout_marginEnd="9dp"
+                    android:layout_marginRight="9dp"
                     android:background="#00FFFFFF"
                     app:layout_constraintEnd_toStartOf="@+id/numOfDisLikes"
                     app:layout_constraintTop_toTopOf="parent"
                     app:srcCompat="@drawable/graybrokenheart" />
 
+                <ImageButton
+                    android:id="@+id/Likebtn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="2dp"
+                    android:background="#00FFFFFF"
+                    app:layout_constraintEnd_toStartOf="@+id/numOfLikes"
+                    app:layout_constraintHorizontal_bias="0.781"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:srcCompat="@drawable/grayheart1" />
 
+                <TextView
+                    android:id="@+id/numOfDisLikes"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:layout_marginEnd="190dp"
+                    android:layout_marginRight="190dp"
+                    android:text="0 Dislikes"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/numOfLikes"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:layout_marginEnd="32dp"
+                    android:layout_marginRight="32dp"
+                    android:text="0 Like "
+                    app:layout_constraintEnd_toStartOf="@+id/DisLikebtn"
+                    app:layout_constraintTop_toTopOf="parent" />
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <androidx.constraintlayout.widget.ConstraintLayout
