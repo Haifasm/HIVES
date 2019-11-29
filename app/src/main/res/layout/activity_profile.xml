@@ -10,54 +10,47 @@
     <include
         android:id="@+id/viewHiveToolBar"
         layout="@layout/profile_bar"
-        android:layout_width="412dp"
-        android:layout_height="77dp" />
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 
     <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/userimage"
         android:layout_width="95dp"
         android:layout_height="89dp"
-        android:layout_marginBottom="104dp"
+        android:layout_marginTop="20dp"
         android:src="@drawable/honey"
-        app:layout_constraintBottom_toTopOf="@+id/myposts"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/viewHiveToolBar"
-        app:layout_constraintVertical_bias="1.0" />
+        app:layout_constraintTop_toBottomOf="@+id/viewHiveToolBar" />
 
     <TextView
         android:id="@+id/username"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="100dp"
         android:gravity="center"
         android:text="اسم المستخدم"
         android:textColor="#FA030000"
         android:textSize="24sp"
-        app:layout_constraintBottom_toTopOf="@+id/bio"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.704" />
+        app:layout_constraintTop_toBottomOf="@+id/userimage" />
 
     <TextView
         android:id="@+id/bio"
         android:layout_width="338dp"
         android:layout_height="65dp"
-        android:layout_marginTop="152dp"
         android:gravity="center"
         android:text="نبذة"
         android:textAllCaps="false"
         android:textColor="#090000"
         android:textSize="18sp"
-        app:layout_constraintBottom_toTopOf="@+id/myposts"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0" />
+        app:layout_constraintTop_toBottomOf="@+id/username" />
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottom_navigation"
@@ -71,29 +64,41 @@
         app:layout_constraintStart_toStartOf="parent"
         app:menu="@menu/bottom_navigation" />
 
-    <Button
-        android:id="@+id/myposts"
-        android:layout_width="166dp"
-        android:layout_height="56dp"
-        android:background="#F8C471"
-        android:text="رحيقي"
-        android:textColor="#F20A0000"
-        android:textSize="18sp"
-        app:layout_constraintBottom_toTopOf="@+id/myRecycleView"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <Button
-        android:id="@+id/myhives"
-        android:layout_width="175dp"
-        android:layout_height="55dp"
-        android:background="#F8C471"
-        android:text="قفائري"
-        android:textColor="#0A0000"
-        android:textSize="18sp"
-        app:layout_constraintBottom_toTopOf="@+id/myRecycleView"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintLayout2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/userimage"
-        app:layout_constraintVertical_bias="1.0" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/bio">
+
+        <Button
+            android:id="@+id/myposts"
+            android:layout_width="166dp"
+            android:layout_height="56dp"
+            android:background="#F8C471"
+            android:text="رحيقي"
+            android:textColor="#F20A0000"
+            android:textSize="18sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <Button
+            android:id="@+id/myhives"
+            android:layout_width="175dp"
+            android:layout_height="55dp"
+            android:background="#F8C471"
+            android:text="قفائري"
+            android:textColor="#0A0000"
+            android:textSize="18sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/myposts"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
 
     <androidx.recyclerview.widget.RecyclerView
 
@@ -102,10 +107,8 @@
         android:layout_height="292dp"
         app:layout_constraintBottom_toTopOf="@+id/bottom_navigation"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.448"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/bio"
-        app:layout_constraintVertical_bias="0.906" />
+        app:layout_constraintTop_toBottomOf="@+id/constraintLayout2" />
 
     <ImageView
         android:id="@+id/settings"
@@ -119,17 +122,47 @@
         app:layout_constraintVertical_bias="0.51"
         app:srcCompat="@drawable/settings" />
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="الإعدادات"
+        android:textColor="@color/darkbrown"
+        app:layout_constraintBottom_toBottomOf="@+id/settings"
+        app:layout_constraintEnd_toStartOf="@+id/settings"
+        app:layout_constraintTop_toTopOf="@+id/settings" />
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/postview"
         android:layout_width="367dp"
         android:layout_height="292dp"
         android:visibility="visible"
-        app:layout_constraintBottom_toBottomOf="@+id/myRecycleView"
+        app:layout_constraintBottom_toTopOf="@+id/bottom_navigation"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.454"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/bio"
-        app:layout_constraintVertical_bias="1.0" />
+        app:layout_constraintTop_toBottomOf="@+id/constraintLayout2" />
+
+
+    <TextView
+        android:id="@+id/nopost"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="لم تقم بنشر أي رحيق"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toTopOf="@+id/bottom_navigation"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/constraintLayout2" />
+
+    <TextView
+        android:id="@+id/nohive"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="لم تقم بإنشاء أي قفير"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toTopOf="@+id/bottom_navigation"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/constraintLayout2" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

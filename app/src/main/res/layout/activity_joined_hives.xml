@@ -26,6 +26,7 @@
 
 
     <TextView
+        android:visibility="invisible"
         android:id="@+id/textView10"
         android:layout_width="160dp"
         android:layout_height="wrap_content"
@@ -37,6 +38,7 @@
         app:layout_constraintTop_toTopOf="@+id/viewHiveToolBar" />
 
     <TextView
+        android:visibility="invisible"
         android:id="@+id/textView11"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

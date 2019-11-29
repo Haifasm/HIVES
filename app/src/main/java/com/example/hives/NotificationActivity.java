@@ -23,6 +23,7 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 import com.squareup.picasso.Picasso;
 
@@ -65,7 +66,7 @@ public class NotificationActivity extends AppCompatActivity {
         });
 
         nonot=findViewById(R.id.nonotif);
-       // nonot.setVisibility(View.INVISIBLE);
+        // nonot.setVisibility(View.INVISIBLE);
 
         activitylist=(RecyclerView)findViewById(R.id.activityview);
         activitylist.setHasFixedSize(true);
@@ -75,47 +76,49 @@ public class NotificationActivity extends AppCompatActivity {
         activitylist.setLayoutManager(linearLayoutManager);
 
 
-       displayActivity();
+        displayActivity();
 
     }
 
     private void displayActivity() {
 
         final DatabaseReference commentRef=FirebaseDatabase.getInstance().getReference().child("Comments");
+        //h
+        Query query= commentRef.orderByChild("creatorid").startAt(currentuser.getUid()).endAt(currentuser.getUid() +"\uf8ff");
+        query.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                if(dataSnapshot.getChildrenCount()==0){//no notii
+                    activitylist.setVisibility(View.INVISIBLE);
+                    nonot.setVisibility(View.VISIBLE);
+                }
+                else {
+                    activitylist.setVisibility(View.VISIBLE);
+                    nonot.setVisibility(View.INVISIBLE);
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+
+
+
         FirebaseRecyclerAdapter<activityComments, ActivityViewHolder>  firebaseRecyclerAdapter=
                 new FirebaseRecyclerAdapter<activityComments, ActivityViewHolder>
                         (
                                 activityComments.class,
                                 R.layout.activity_layout,
                                 ActivityViewHolder.class,
-                                commentRef.orderByChild("creatorid").startAt(currentuser.getUid()).endAt(currentuser.getUid() +"\uf8ff")
+                                query
                         )
                 {
                     @Override
                     protected void populateViewHolder(final ActivityViewHolder activityViewHolder, final activityComments comment, int i) {
 
                         final String key = getRef(i).getKey();
-
-//                        commentRef.child(key).addValueEventListener(new ValueEventListener() {
-//                            @Override
-//                            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-//                                final String PostKey=dataSnapshot.child("postkey").getValue().toString();
-//                                activityViewHolder.mView.setOnClickListener(new View.OnClickListener() {
-//                                    @Override
-//                                    public void onClick(View v) {
-//                                        Intent ClickPostIntent = new Intent(NotificationActivity.this, ViewPost.class);
-//                                        ClickPostIntent.putExtra("PostKey",PostKey);
-//                                        startActivity(ClickPostIntent);
-//                                    }
-//                                });
-//                            }
-//
-//                            @Override
-//                            public void onCancelled(@NonNull DatabaseError databaseError) {
-//
-//                            }
-//                        });
-
 
                         activityViewHolder.setUsername(comment.getUsername());
                         activityViewHolder.setComment(comment.getComment());
@@ -127,13 +130,13 @@ public class NotificationActivity extends AppCompatActivity {
 
 
                         activityViewHolder.mView.setOnClickListener(new View.OnClickListener() {
-                                    @Override
-                                    public void onClick(View v) {
-                                        Intent ClickPostIntent = new Intent(NotificationActivity.this, ViewPost.class);
-                                        ClickPostIntent.putExtra("PostKey",comment.getPostkey());
-                                        startActivity(ClickPostIntent);
-                                    }
-                                });
+                            @Override
+                            public void onClick(View v) {
+                                Intent ClickPostIntent = new Intent(NotificationActivity.this, ViewPost.class);
+                                ClickPostIntent.putExtra("PostKey",comment.getPostkey());
+                                startActivity(ClickPostIntent);
+                            }
+                        });
 
 
                     }
@@ -143,9 +146,7 @@ public class NotificationActivity extends AppCompatActivity {
 
 
 
-        if(firebaseRecyclerAdapter.getItemCount()==0)
-            activitylist.setVisibility(View.INVISIBLE);
-        else
+
         activitylist.setAdapter(firebaseRecyclerAdapter);
 
 
@@ -226,56 +227,3 @@ public class NotificationActivity extends AppCompatActivity {
 
 
 
-
-
-
-/*
-Query query=postRef.orderByChild("uid").equalTo(currentUser.getUid());
-        query.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-
-                for (DataSnapshot postsnapshot:dataSnapshot.getChildren()){
-                    final String key=dataSnapshot.getKey();
-                postRef.child(key).addValueEventListener(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                        if(dataSnapshot.hasChild("Comments")){
-                            postRef.child(key).child("Comments").addValueEventListener(new ValueEventListener() {
-                                @Override
-                                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                                    commentlist=new ArrayList<>();
-                                    for (DataSnapshot snap:dataSnapshot.getChildren()){
-                                        Comment comment=snap.getValue(Comment.class);
-                                        commentlist.add(comment);
-                                    }
-
-
-
-                                }
-
-                                @Override
-                                public void onCancelled(@NonNull DatabaseError databaseError) {
-
-                                }
-                            });
-
-                        }
-                    }
-
-                    @Override
-                    public void onCancelled(@NonNull DatabaseError databaseError) {
-
-                    }
-                });
-
-
-                }
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-
-            }
-        });
- */

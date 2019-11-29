@@ -3,6 +3,7 @@ package com.example.hives;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
@@ -32,18 +33,22 @@ import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 import com.squareup.picasso.Picasso;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 public class joinedHivesActivity extends AppCompatActivity {
+
+    public static final String TAG = joinedHivesActivity.class.getName();
+
     List<Object> hivelist = new ArrayList<Object>();
     RecyclerView recyclerView;
     String currenthive;
     FirebaseUser currentuser;
     private BottomNavigationView bottomnav;
     DatabaseReference hivesref;
-    View nothing;
 
 
-    private TextView explore;
+
+    private TextView explore,notjoined;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -58,6 +63,7 @@ public class joinedHivesActivity extends AppCompatActivity {
                 return false;
             }
         });
+        notjoined= findViewById(R.id.textView10);
         explore = findViewById(R.id.textView11);
         //explore.setVisibility(View.INVISIBLE);
         explore.setOnClickListener(new View.OnClickListener() {
@@ -76,18 +82,38 @@ public class joinedHivesActivity extends AppCompatActivity {
         //
         currentuser = FirebaseAuth.getInstance().getCurrentUser();
 
+
+
         final DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Users").child(currentuser.getUid()).child("Joined Hives");//NOT USED
+
+
+
         reference.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+
+
+
+
                 // NOT USED EXCEPT TO CALL FILL RECYCLER
                 hivelist.clear();
                 for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
                     hivelist.add(snapshot.getValue());
                     System.out.println(dataSnapshot.getChildrenCount());}
-                if (!hivelist.isEmpty()) ;
+
+
                 fillRecycler();
+
+
+
+
             }
+
+
+
+
+
+
 
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
@@ -96,37 +122,66 @@ public class joinedHivesActivity extends AppCompatActivity {
         });
     }
 
+
+
+
+
     public void fillRecycler() {
 
-            hivesref = FirebaseDatabase.getInstance().getReference().child("HIVES");
-            FirebaseRecyclerAdapter<HivesRetrieve, HiveViewHolder> firebaseRecyclerAdapter = null;
-            // for (int i = 0; i<hives.length; i++) {
-            firebaseRecyclerAdapter = new FirebaseRecyclerAdapter<HivesRetrieve, HiveViewHolder>(
-                    HivesRetrieve.class,
-                    R.layout.item_row,
-                    HiveViewHolder.class,
-                    hivesref.orderByChild(currentuser.getUid()).startAt(currentuser.getUid()).endAt(currentuser.getUid())) {
-                @Override
-                protected void populateViewHolder(HiveViewHolder hiveViewHolder, HivesRetrieve hivesRetrieve, final int k) {
-                    hiveViewHolder.setHiveName(hivesRetrieve.getTitle());
-                    hiveViewHolder.setHiveImage(getApplicationContext(), hivesRetrieve.getImage());
-                    hiveViewHolder.itemView.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View v) {
-                            String hivename = getRef(k).getKey();
-                            Intent profielintent = new Intent(joinedHivesActivity.this, ViewHive.class);
-                            profielintent.putExtra("HiveName", hivename);
-                            startActivity(profielintent);
-                        }
-                    });
+        hivesref = FirebaseDatabase.getInstance().getReference().child("HIVES");
+        FirebaseRecyclerAdapter<HivesRetrieve, HiveViewHolder> firebaseRecyclerAdapter = null;
+
+/////h
+        Query query=hivesref.orderByChild(currentuser.getUid()).startAt(currentuser.getUid()).endAt(currentuser.getUid());
+        query.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                if(dataSnapshot.getChildrenCount()==0){
+                    recyclerView.setVisibility(View.GONE);
+                    explore.setVisibility(View.VISIBLE);
+                    notjoined.setVisibility(View.VISIBLE);
                 }
+                else{
+                    recyclerView.setVisibility(View.VISIBLE);
+                    explore.setVisibility(View.INVISIBLE);
+                    notjoined.setVisibility(View.INVISIBLE);
+                }
+            }
 
-            };
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
 
-            if(firebaseRecyclerAdapter.getItemCount()==0)
-                recyclerView.setVisibility(View.INVISIBLE);
-            else
-            recyclerView.setAdapter(firebaseRecyclerAdapter);
+            }
+        });
+
+        firebaseRecyclerAdapter = new FirebaseRecyclerAdapter<HivesRetrieve, HiveViewHolder>(
+                HivesRetrieve.class,
+                R.layout.item_row,
+                HiveViewHolder.class,
+                query) {
+            @Override
+            protected void populateViewHolder(HiveViewHolder hiveViewHolder, HivesRetrieve hivesRetrieve, final int k) {
+                hiveViewHolder.setHiveName(hivesRetrieve.getTitle());
+                hiveViewHolder.setHiveImage(getApplicationContext(), hivesRetrieve.getImage());
+                hiveViewHolder.itemView.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        String hivename = getRef(k).getKey();
+                        Intent profielintent = new Intent(joinedHivesActivity.this, ViewHive.class);
+                        profielintent.putExtra("HiveName", hivename);
+                        startActivity(profielintent);
+                    }
+                });
+            }
+
+        };
+
+
+        recyclerView.setAdapter(firebaseRecyclerAdapter);
+
+
+
+
 
 
 

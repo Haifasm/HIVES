@@ -63,11 +63,20 @@ public class ProfileActivity extends AppCompatActivity {
     private DatabaseReference allPostdatabaseRef;
     private RecyclerView  showuPost;
 
+    TextView nohive,nopost;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+
+
         setContentView(R.layout.activity_profile);
+
+
+        nohive=findViewById(R.id.nohive);
+        nopost=findViewById(R.id.nopost);
+
         uesrName = findViewById(R.id.username);
         userBio = findViewById(R.id.bio);
         settings = findViewById(R.id.settings);
@@ -81,31 +90,96 @@ public class ProfileActivity extends AppCompatActivity {
                 return false;
             }
         });
+        mAuth = FirebaseAuth.getInstance();
+        Fuser =mAuth.getCurrentUser();
+        String current = Fuser.getUid();
+        allPostdatabaseRef =  FirebaseDatabase.getInstance().getReference().child("Posts");
+        final Query queryp =allPostdatabaseRef.orderByChild("uid").startAt(current).endAt(current +"\uf8ff");
+        queryp.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                if(dataSnapshot.getChildrenCount()==0){
+                    nopost.setVisibility(View.VISIBLE);
+                    nohive.setVisibility(View.INVISIBLE);
+                }
+                else{
+                    nopost.setVisibility(View.INVISIBLE);
+                    nohive.setVisibility(View.INVISIBLE);
+                }
+            }
 
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
         myPosts = findViewById(R.id.myposts);
         myPosts.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 myPosts.setBackgroundColor(getResources().getColor(R.color.clicked));
                 myHives.setBackgroundColor(getResources().getColor(R.color.notclicked));
-               hivelist.setAlpha(0);
-               showuPost.setAlpha(1);
-               showuPost.setVisibility(View.VISIBLE);
+                hivelist.setAlpha(0);
+                showuPost.setAlpha(1);
+                showuPost.setVisibility(View.VISIBLE);
+                queryp.addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                        if(dataSnapshot.getChildrenCount()==0){
+                            nopost.setVisibility(View.VISIBLE);
+                            nohive.setVisibility(View.INVISIBLE);
+                        }
+                        else{
+                            nopost.setVisibility(View.INVISIBLE);
+                            nohive.setVisibility(View.INVISIBLE);
+                        }
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                    }
+                });
 
 
 
             }
         });
+
+        HiveRef = FirebaseDatabase.getInstance().getReference().child("HIVES");
+        final Query queryh=HiveRef.orderByChild("uid").startAt(current).endAt(current +"\uf8ff");
+
+
+
         myHives= findViewById(R.id.myhives);
         myHives.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
+            public void onClick(final View v) {
                 myHives.setBackgroundColor(getResources().getColor(R.color.clicked));
                 myPosts.setBackgroundColor(getResources().getColor(R.color.notclicked));
                 hivelist.setAlpha(1);
                 showuPost.setAlpha(0);
                 showuPost.setVisibility(View.GONE);
                 hivelist.setVisibility(View.VISIBLE);
+
+                queryh.addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                        if(dataSnapshot.getChildrenCount()==0){
+                            nohive.setVisibility(View.VISIBLE);
+                            nopost.setVisibility(View.INVISIBLE);
+                        }
+                        else {
+                            nohive.setVisibility(View.INVISIBLE);
+                            nopost.setVisibility(View.INVISIBLE);
+                        }
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                    }
+                });
 
             }
         });
@@ -119,27 +193,26 @@ public class ProfileActivity extends AppCompatActivity {
         hivelist.setLayoutManager(linearLayoutManager);
 
         mAuth = FirebaseAuth.getInstance();
-        Fuser =mAuth.getCurrentUser();
+
         mRef =FirebaseDatabase.getInstance().getReference().child("Users").child(Fuser.getUid());
 
-        HiveRef = FirebaseDatabase.getInstance().getReference().child("HIVES");
+
 
 
         mRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 String username,bio;
-               // String Uid =dataSnapshot.getValue().toString();
                 if (dataSnapshot.exists()){
-                username = dataSnapshot.child("username").getValue().toString();
-                bio =dataSnapshot.child("bio").getValue().toString();
-                uesrName.setText(username);
-                userBio.setText(bio);
+                    username = dataSnapshot.child("username").getValue().toString();
+                    bio =dataSnapshot.child("bio").getValue().toString();
+                    uesrName.setText(username);
+                    userBio.setText(bio);
 
-                if(dataSnapshot.hasChild("profileimg")){
-                    String Image = dataSnapshot.child("profileimg").getValue().toString();
-                Picasso.get().load(Image).into(userImage);
-                Glide.with(getApplicationContext()).load(Image).into(userImage);}}
+                    if(dataSnapshot.hasChild("profileimg")){
+                        String Image = dataSnapshot.child("profileimg").getValue().toString();
+                        Picasso.get().load(Image).into(userImage);
+                        Glide.with(getApplicationContext()).load(Image).into(userImage);}}
             }
 
             @Override
@@ -147,41 +220,31 @@ public class ProfileActivity extends AppCompatActivity {
             }
         });
 
-        //ptoolbar=(Toolbar)findViewById(R.id.profilebar);
-        //setSupportActionBar(ptoolbar);
-        //getSupportActionBar().setTitle("Profile");
+
 
         settings.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent settings = new Intent(ProfileActivity.this, settingsActivity.class);
                 startActivity(settings);
-                /*FirebaseAuth.getInstance().signOut();
-                Intent logoIntent = new Intent(ProfileActivity.this, SigninActivity.class);
-                logoIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                startActivity(logoIntent);
-                finish();*/
             }
         });
+
         showuPost = findViewById(R.id.postview);
         showuPost.setHasFixedSize(true); //???
         showuPost.setLayoutManager(new LinearLayoutManager(this));
-        DisplayUserHives();
-        DisplayUserPost();
+        DisplayUserHives(queryh);
+        DisplayUserPost(queryp);
 
         myPosts.setBackgroundColor(getResources().getColor(R.color.clicked));
         myHives.setBackgroundColor(getResources().getColor(R.color.notclicked));
         hivelist.setAlpha(0);
         showuPost.setAlpha(1);
-        showuPost.setVisibility(View.VISIBLE);
+        //  showuPost.setVisibility(View.VISIBLE);        /////////////////////////////
 
     }
 
-    private void DisplayUserPost() {
-        mAuth = FirebaseAuth.getInstance();
-        Fuser =mAuth.getCurrentUser();
-        String current = Fuser.getUid();
-        allPostdatabaseRef =  FirebaseDatabase.getInstance().getReference().child("Posts");
+    private void DisplayUserPost(Query queryp) {
 
         FirebaseRecyclerAdapter<AllPosts, MainActivity.PostViweHolder> FirebaseRecycleAdapter
                 = new FirebaseRecyclerAdapter<AllPosts, MainActivity.PostViweHolder>
@@ -189,7 +252,7 @@ public class ProfileActivity extends AppCompatActivity {
                         AllPosts.class,
                         R.layout.post_row,///
                         MainActivity.PostViweHolder.class,
-                        allPostdatabaseRef.orderByChild("uid").startAt(current).endAt(current +"\uf8ff")
+                        queryp
                 ) {
             @Override
             protected void populateViewHolder(final MainActivity.PostViweHolder postViweHolder, final AllPosts module, final int i) {
@@ -257,15 +320,14 @@ public class ProfileActivity extends AppCompatActivity {
     }
 
 
-    private void DisplayUserHives() {
-       // Query searchHivesAndInfiQuere;
-        String current = Fuser.getUid();
+    private void DisplayUserHives(Query queryh) {
+
         FirebaseRecyclerAdapter<HivesRetrieve, HiveViewHolder> firebaseRecyclerAdapter =
                 new FirebaseRecyclerAdapter<HivesRetrieve, HiveViewHolder>(
                         HivesRetrieve.class,
                         R.layout.item_row,
                         HiveViewHolder.class,
-                        HiveRef.orderByChild("uid").startAt(current).endAt(current +"\uf8ff")
+                        queryh
 
                 ) {
                     @Override

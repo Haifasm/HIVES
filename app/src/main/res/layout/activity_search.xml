@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -10,60 +10,11 @@
         android:id="@+id/viewHiveToolBar"
         layout="@layout/profile_bar"
         android:layout_width="match_parent"
-        android:layout_height="77dp" />
+        android:layout_height="60dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
-
-    <RelativeLayout
-        android:id="@+id/myLayout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="15dp">
-
-
-        <ImageButton
-            android:id="@+id/searchbutton"
-            android:layout_width="55dp"
-            android:layout_height="55dp"
-            android:layout_marginTop="10dp"
-            android:background="@android:drawable/ic_menu_search"
-            android:src="@drawable/search"
-            app:layout_constraintStart_toEndOf="@+id/SearchInput"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <EditText
-            android:id="@+id/SearchInput"
-            android:layout_width="333dp"
-            android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            android:layout_marginStart="23dp"
-            android:layout_marginLeft="23dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginRight="-1dp"
-            android:layout_toEndOf="@+id/searchbutton"
-            android:layout_toRightOf="@+id/searchbutton"
-            android:background="@drawable/sginin_style"
-            android:ems="10"
-            android:hint="ابحث عن قفير"
-            android:imeOptions="actionSearch"
-            android:inputType="textPersonName"
-            android:lines="1"
-            android:maxLines="1"
-            android:padding="10dp" />
-    </RelativeLayout>
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/Searchresult"
-        android:layout_width="390dp"
-        android:layout_height="451dp"
-        android:layout_below="@+id/myLayout"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentLeft="true"
-
-        android:layout_marginStart="10dp"
-        android:layout_marginLeft="10dp"
-        android:layout_marginTop="71dp"
-        android:layout_marginEnd="10dp"
-        android:layout_marginRight="10dp" />
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottom_navigationsearch"
@@ -71,25 +22,98 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:background="?android:attr/windowBackground"
-        app:menu="@menu/bottom_navigation" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:menu="@menu/bottom_navigation"></com.google.android.material.bottomnavigation.BottomNavigationView>
 
-    <Button
-        android:id="@+id/createHive"
-        android:layout_width="151dp"
+
+    <EditText
+        android:id="@+id/SearchInput"
+        android:layout_width="350dp"
         android:layout_height="wrap_content"
+        android:layout_marginRight="10dp"
+        android:background="@drawable/sginin_style"
+        android:ems="10"
+        android:hint="ابحث عن قفير..."
+        android:imeOptions="actionSearch"
+        android:inputType="textPersonName"
+        android:lines="1"
+        android:maxLines="1"
+        android:padding="10dp"
+        app:layout_constraintBottom_toBottomOf="@+id/viewHiveToolBar"
+        app:layout_constraintEnd_toEndOf="@+id/viewHiveToolBar"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageButton
+        android:id="@+id/searchbutton"
+        android:layout_width="55dp"
+        android:layout_height="55dp"
+        android:background="@android:drawable/ic_menu_search"
+        android:src="@drawable/search"
+        app:layout_constraintBottom_toBottomOf="@+id/viewHiveToolBar"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintLayout"
+        android:layout_width="wrap_content"
+        android:layout_height="60dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/viewHiveToolBar">
+
+        <Button
+            android:id="@+id/createHive"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:background="@color/colorPrimary"
+            android:text="إنشاء قفير "
+            android:textSize="18sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/imageView4"
+            android:layout_width="70dp"
+            android:layout_height="50dp"
+            android:src="@drawable/arrowy"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/createHive"
+            app:layout_constraintTop_toTopOf="parent" />
+
+
+        <TextView
+            android:id="@+id/textView17"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="لم تجد القفير المناسب؟"
+            android:textColor="@color/darkbrown"
+            android:textSize="18sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/imageView4"
+            app:layout_constraintTop_toTopOf="parent" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/Searchresult"
+        android:layout_width="390dp"
+        android:layout_height="451dp"
         android:layout_alignParentStart="true"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentRight="true"
-        android:layout_marginStart="221dp"
-        android:layout_marginLeft="221dp"
-        android:layout_marginTop="96dp"
-        android:layout_marginEnd="39dp"
-        android:layout_marginRight="39dp"
-        android:background="@color/colorPrimary"
-        android:text="إنشاء قفير جديد"
-        android:textSize="18sp" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/constraintLayout" />
 
 
-</RelativeLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
