@@ -2,6 +2,7 @@ package com.example.hives;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -12,6 +13,7 @@ import android.os.Bundle;
 import android.os.StrictMode;
 import android.text.TextUtils;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -23,6 +25,7 @@ import android.widget.Toast;
 import com.bumptech.glide.Glide;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -79,6 +82,8 @@ public class ViewPost extends AppCompatActivity implements PopUpDelPost.ExampleD
     DatabaseReference HiveRef;
     String Hivenamee,hname;
     Dialog imageDialog;
+    private BottomNavigationView bottomnav;
+    private DrawerLayout drawerLayout;
 
     ImageView delcom;
 
@@ -95,6 +100,17 @@ public class ViewPost extends AppCompatActivity implements PopUpDelPost.ExampleD
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_view_post);
+
+        //bottom nav
+        drawerLayout = (DrawerLayout) findViewById(R.id.drawable_layout);
+        bottomnav = (BottomNavigationView) findViewById(R.id.bottom_navigation);
+        bottomnav.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
+                UserMenuSelector(menuItem);
+                return false;
+            }
+        });
 
         myDialog = new Dialog(this);
         imageDialog = new Dialog(this);
@@ -329,6 +345,10 @@ public class ViewPost extends AppCompatActivity implements PopUpDelPost.ExampleD
                         String pimg = dataSnapshot.child("postimage").getValue().toString();
                         Picasso.get().load(pimg).into(ViewPostImage);
                         Glide.with(getApplicationContext()).load(pimg).into(ViewPostImage);
+                    }
+                    else {
+
+
                     }
 
                     DatabaseReference hve=FirebaseDatabase.getInstance().getReference().child("HIVES").child(hname);
@@ -758,6 +778,32 @@ public class ViewPost extends AppCompatActivity implements PopUpDelPost.ExampleD
 
             }
         });
+
+    }
+
+
+    private void UserMenuSelector(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.nav_jhives:
+                Intent intentjhives = new Intent(ViewPost.this, joinedHivesActivity.class);
+                startActivity(intentjhives);
+                break;
+
+
+            case R.id.nav_search:
+                Intent intentsearch = new Intent(ViewPost.this, searchActivity.class);
+                startActivity(intentsearch);
+                break;
+
+            case R.id.nav_profile:
+                Intent intentprofile = new Intent(ViewPost.this, ProfileActivity.class);
+                startActivity(intentprofile);
+                break;
+            case R.id.nav_notf:
+                Intent intentact = new Intent(ViewPost.this, NotificationActivity.class);
+                startActivity(intentact);
+                break;
+        }
 
     }
 }
