@@ -45,6 +45,7 @@ public class ViewHive extends AppCompatActivity {
     private FirebaseUser Fuser;
     private DatabaseReference allPostdatabaseRef;
     private RecyclerView  showPost;
+    String cuid;
 
 
     @Override
@@ -99,7 +100,8 @@ public class ViewHive extends AppCompatActivity {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 if (dataSnapshot.exists()){
-                    if(mAuth.getCurrentUser().getUid().equals(dataSnapshot.child("uid").getValue().toString())){
+                    cuid=dataSnapshot.child("uid").getValue().toString();
+                    if(mAuth.getCurrentUser().getUid().equals(cuid)){
                         joinHive.setVisibility(View.INVISIBLE);
                         editHivebtn.setVisibility(View.VISIBLE);
                         UnjoinHive.setVisibility(View.INVISIBLE);
@@ -128,7 +130,6 @@ public class ViewHive extends AppCompatActivity {
 
                     HiveName.setText(hivenm);
                     HiveInfo.setText(Hivedes);
-                    HiveCreator.setText("ملكة الخلية:"+createuser);
 
 
                 }
@@ -140,6 +141,11 @@ public class ViewHive extends AppCompatActivity {
 
             }
         });
+
+
+
+
+
 
 
 
@@ -259,14 +265,41 @@ public class ViewHive extends AppCompatActivity {
 
                 final String PostKey = getRef(i).getKey();
 
+                DatabaseReference hivesRef=FirebaseDatabase.getInstance().getReference().child("HIVES").child(module.getHivename());
+                hivesRef.addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 
+                        postViweHolder.setHiveimage(getApplicationContext(), dataSnapshot.child("image").getValue().toString());
+
+
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                    }
+                });
                 postViweHolder.setDate(module.getDate());
-                postViweHolder.setHiveimage(getApplicationContext(), module.getHiveimage());
                 postViweHolder.setDescription(module.getDescription());
                 postViweHolder.setHivename(module.getHivename());
                 postViweHolder.setPostimage(getApplicationContext(), module.getPostimage());
                 postViweHolder.setTime(module.getTime());
-                postViweHolder.setUsername(module.getUsername());
+
+
+                DatabaseReference usr=FirebaseDatabase.getInstance().getReference().child("Users").child(module.getUid());
+                usr.addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                        postViweHolder.setUsername(dataSnapshot.child("username").getValue().toString());
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                    }
+                });
+
 
 
                 postViweHolder.mViwe.setOnClickListener(new View.OnClickListener() {
@@ -277,6 +310,9 @@ public class ViewHive extends AppCompatActivity {
                         startActivity(ClickPostIntent);
                     }
                 });
+
+
+
 
             }
         };
@@ -322,6 +358,7 @@ public class ViewHive extends AppCompatActivity {
             TextView name = mViwe.findViewById(R.id.user_name);
             name.setText(username);
         }
+
     }
 
 

@@ -692,6 +692,7 @@ color common_google_signin_btn_text_light_disabled
 color common_google_signin_btn_text_light_focused
 color common_google_signin_btn_text_light_pressed
 color common_google_signin_btn_tint
+color darkbrown
 color design_bottom_navigation_shadow_color
 color design_default_color_primary
 color design_default_color_primary_dark
@@ -1095,6 +1096,7 @@ drawable abc_textfield_search_default_mtrl_alpha
 drawable abc_textfield_search_material
 drawable abc_vector_test
 drawable addcamera
+drawable arrowy
 drawable avd_hide_password
 drawable avd_show_password
 drawable bee
@@ -1317,6 +1319,8 @@ id commentdesc
 id commentinput
 id comments_list
 id commentsendbtn
+id constraintLayout
+id constraintLayout2
 id container
 id content
 id contentPanel
@@ -1399,6 +1403,7 @@ id imageView
 id imageView1
 id imageView2
 id imageView3
+id imageView4
 id imageView5
 id info
 id invisible
@@ -1428,7 +1433,6 @@ id mini
 id mtrl_child_content_container
 id mtrl_internal_children_alpha_tag
 id multiply
-id myLayout
 id myRecycleView
 id myhives
 id myposts
@@ -1441,8 +1445,10 @@ id nav_search
 id nav_username
 id navigation_header_container
 id never
+id nohive
 id none
 id nonotif
+id nopost
 id normal
 id notification_background
 id notification_main_column
@@ -1571,6 +1577,7 @@ id textView13
 id textView14
 id textView15
 id textView16
+id textView17
 id textView2
 id textView3
 id textView4

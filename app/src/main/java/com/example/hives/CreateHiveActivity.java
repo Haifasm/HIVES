@@ -213,6 +213,7 @@ public class CreateHiveActivity extends AppCompatActivity
                     hivesmap.put("hiveinfo",hivedes);
                     hivesmap.put("username",username);
                     hivesmap.put("image",url);
+                    hivesmap.put(currentUser,currentUser);
 
 
                     hivesref.child(hiven).updateChildren(hivesmap).addOnCompleteListener(new OnCompleteListener() {

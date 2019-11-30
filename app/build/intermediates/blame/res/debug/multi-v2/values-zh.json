@@ -1,10 +1,10 @@
 {
     "logs": [
         {
-            "outputFile": "/Users/uni/Android studio projects/HIVES-Final/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-zh/values-zh.xml",
+            "outputFile": "/Users/raghadalnassar/Desktop/HIVES-1Nf/HIVES-Final/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-zh/values-zh.xml",
             "map": [
                 {
-                    "source": "/Users/uni/.gradle/caches/transforms-2/files-2.1/58c484ceac69994e19f401b4c535951a/android-image-cropper-2.8.0/res/values-zh/values-zh.xml",
+                    "source": "/Users/raghadalnassar/.gradle/caches/transforms-2/files-2.1/58c484ceac69994e19f401b4c535951a/android-image-cropper-2.8.0/res/values-zh/values-zh.xml",
                     "from": {
                         "startLines": "2,3,4,5,6,7,8,9,10",
                         "startColumns": "4,4,4,4,4,4,4,4,4",

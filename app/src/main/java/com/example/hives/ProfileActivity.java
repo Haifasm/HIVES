@@ -260,13 +260,43 @@ public class ProfileActivity extends AppCompatActivity {
                 final String PostKey = getRef(i).getKey();
 
 
+
+                DatabaseReference usr=FirebaseDatabase.getInstance().getReference().child("Users").child(module.getUid());
+                usr.addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                        postViweHolder.setUsername(dataSnapshot.child("username").getValue().toString());
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                    }
+                });
+
+                DatabaseReference hivesRef=FirebaseDatabase.getInstance().getReference().child("HIVES").child(module.getHivename());
+                hivesRef.addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+
+                        postViweHolder.setHiveimage(getApplicationContext(), dataSnapshot.child("image").getValue().toString());
+
+
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                    }
+                });
+
                 postViweHolder.setDate(module.getDate());
-                postViweHolder.setHiveimage(getApplicationContext(), module.getHiveimage());
+
                 postViweHolder.setDescription(module.getDescription());
                 postViweHolder.setHivename(module.getHivename());
                 postViweHolder.setPostimage(getApplicationContext(), module.getPostimage());
                 postViweHolder.setTime(module.getTime());
-                postViweHolder.setUsername(module.getUsername());
+
 
                 postViweHolder.mViwe.setOnClickListener(new View.OnClickListener() {
                     @Override

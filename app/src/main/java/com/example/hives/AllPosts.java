@@ -8,10 +8,11 @@ public class AllPosts {
     public String postimage;
     public String time;
     public String username;
+    public String uid;
 
     public AllPosts() {
     }
-    public AllPosts(String date, String description, String hiveimage, String hivename, String postimage, String time,String username) {
+    public AllPosts(String date, String description, String hiveimage, String hivename, String postimage, String time,String username,String uid) {
         this.date = date;
         this.description = description;
         this.hiveimage = hiveimage;
@@ -19,7 +20,17 @@ public class AllPosts {
         this.postimage = postimage;
         this.time = time;
         this.username=username;
+        this.uid=uid;
     }
+
+    public String getUid() {
+        return uid;
+    }
+
+    public void setUid(String uid) {
+        this.uid = uid;
+    }
+
     public String getDate() {
         return date; }
     public void setDate(String date) {

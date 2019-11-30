@@ -77,7 +77,7 @@ public class ViewPost extends AppCompatActivity implements PopUpDelPost.ExampleD
 
     Dialog myDialog;
     DatabaseReference HiveRef;
-    String Hivenamee;
+    String Hivenamee,hname;
     Dialog imageDialog;
 
     ImageView delcom;
@@ -316,7 +316,7 @@ public class ViewPost extends AppCompatActivity implements PopUpDelPost.ExampleD
                     String uname = dataSnapshot.child("username").getValue().toString();
                     String pdate = dataSnapshot.child("date").getValue().toString();
                     String ptime = dataSnapshot.child("time").getValue().toString();
-                    String hname = dataSnapshot.child("hivename").getValue().toString();
+                     hname = dataSnapshot.child("hivename").getValue().toString();
                     creatorid=dataSnapshot.child("uid").getValue().toString();
 
 
@@ -331,16 +331,49 @@ public class ViewPost extends AppCompatActivity implements PopUpDelPost.ExampleD
                         Glide.with(getApplicationContext()).load(pimg).into(ViewPostImage);
                     }
 
+                    DatabaseReference hve=FirebaseDatabase.getInstance().getReference().child("HIVES").child(hname);
+                    hve.addValueEventListener(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                            String himg = dataSnapshot.child("image").getValue().toString();
+                            Picasso.get().load(himg).into(ViewUserImage);
+                            Glide.with(getApplicationContext()).load(himg).into(ViewUserImage);
+                        }
 
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                        }
+                    });
+
+
+                    DatabaseReference usr=FirebaseDatabase.getInstance().getReference().child("Users").child(creatorid);
+                    usr.addValueEventListener(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                            ViewPostUsername.setText(dataSnapshot.child("username").getValue().toString());
+                        }
+
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                        }
+                    });
+
+
+
+
+
+/*
                     if (dataSnapshot.hasChild("hiveimage")) {
                         String himg = dataSnapshot.child("hiveimage").getValue().toString();
                         Picasso.get().load(himg).into(ViewUserImage);
                         Glide.with(getApplicationContext()).load(himg).into(ViewUserImage);
                     }
 
-
+*/
                     ViewPostDisc.setText(Description);
-                    ViewPostUsername.setText(uname);
+  //                 ViewPostUsername.setText(uname);
                     ViewPostDate.setText(pdate);
                     ViewPostTime.setText(ptime);
                     ViewPHiveName.setText(hname);
@@ -354,6 +387,8 @@ public class ViewPost extends AppCompatActivity implements PopUpDelPost.ExampleD
 
             }
         });
+
+
         System.out.println(currentuserID);
         System.out.println(uid);
 

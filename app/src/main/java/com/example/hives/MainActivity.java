@@ -246,30 +246,44 @@ public class MainActivity extends AppCompatActivity {
                 params.width = 0;
                 hivesref = FirebaseDatabase.getInstance().getReference().child("HIVES").child(module.getHivename());
 
+                DatabaseReference usr=FirebaseDatabase.getInstance().getReference().child("Users").child(module.getUid());
+                usr.addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                        postViweHolder.setUsername(dataSnapshot.child("username").getValue().toString());
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                    }
+                });
+
+
                 hivesref.addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-
-
-                        if (dataSnapshot.hasChild(Fuser.getUid())) {
+                        if ((dataSnapshot.hasChild(Fuser.getUid()))) {
                             postViweHolder.mViwe.setVisibility(View.VISIBLE);
                             params.width = 1000;
                             if (module.getPostimage() != null)
-                                params.height = 800;
+                                params.height = 900;
                             else
-                                params.height = 300;
+                                params.height = 400;
 
 
                             final String PostKey = getRef(i).getKey();
 
 
                             postViweHolder.setDate(module.getDate());
-                            postViweHolder.setHiveimage(getApplicationContext(), module.getHiveimage());
+                            postViweHolder.setHiveimage(getApplicationContext(), dataSnapshot.child("image").getValue().toString());
                             postViweHolder.setDescription(module.getDescription());
                             postViweHolder.setHivename(module.getHivename());
                             postViweHolder.setPostimage(getApplicationContext(), module.getPostimage());
                             postViweHolder.setTime(module.getTime());
-                            postViweHolder.setUsername(module.getUsername());
+
+
+
 
 
 
