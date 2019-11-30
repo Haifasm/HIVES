@@ -23,6 +23,7 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
@@ -48,7 +49,7 @@ public class EditHiveActivity extends AppCompatActivity implements DeletHiveDial
     private Uri imageuri;
     private String savecurrentdate,savecurrenttime,hiverandomname,downloadurl;
     private String currentUser;
-    private DatabaseReference userRef;
+    private DatabaseReference userRef,comRef,postsRef;
 
 
 
@@ -57,7 +58,7 @@ public class EditHiveActivity extends AppCompatActivity implements DeletHiveDial
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_hive);
-
+        comRef = FirebaseDatabase.getInstance().getReference().child("Comments");
         VHiveName=getIntent().getExtras().get("HiveName").toString();
 
         editHiveInfo=(EditText)findViewById(R.id.edithiveInfo);
@@ -72,7 +73,7 @@ public class EditHiveActivity extends AppCompatActivity implements DeletHiveDial
         currentUser=mAuth.getCurrentUser().getUid();
         userRef= FirebaseDatabase.getInstance().getReference().child("Users");
         OpenPopUpBtn=(Button)findViewById(R.id.OpenPopUpBtn);
-
+        postsRef = FirebaseDatabase.getInstance().getReference().child("Posts");
         OpenPopUpBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -192,11 +193,55 @@ public class EditHiveActivity extends AppCompatActivity implements DeletHiveDial
     private void Deletehive() {
         if(mAuth!=null && currentUser!=null) {
             editHiveRef.setValue(null);
-            //editHiveRef.removeValue();
+            /////////////////// //editHiveRef.removeValue();
+            Deletepostswithinhive();
             Toast.makeText(EditHiveActivity.this, "تم حذف القفير بنجاح ..", Toast.LENGTH_SHORT).show();
             finish();
             sendUserToStartActivity();
         }
+    }
+    public void Deletepostswithinhive() {
+        final DatabaseReference comRef = FirebaseDatabase.getInstance().getReference().child("Comments");
+        Query query3 = postsRef.orderByChild("hivename").equalTo(VHiveName);
+        //ignore the rests .. you should perform recycler view here of comments
+        query3.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                for (DataSnapshot postsnapshot : dataSnapshot.getChildren()) {
+                    String key1 = postsnapshot.getKey();//root or parent ID
+                    DeleteComments(key1);
+                    postsRef.child(key1).removeValue();
+                }
+            }
+
+            @Override
+            public void onCancelled (@NonNull DatabaseError databaseError){
+
+            }
+
+        });
+    }
+
+
+    public void DeleteComments(final String key) {
+
+        Query Q = comRef.orderByChild("postkey").equalTo(key);
+        Q.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                for (DataSnapshot commentSnapshot : dataSnapshot.getChildren()) {
+                    String IdComment = commentSnapshot.getKey();//key id
+                    comRef.child(IdComment).setValue(null);
+                }
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+
     }
     private void sendUserToStartActivity() {
         Intent MainIntent = new Intent(EditHiveActivity.this,MainActivity.class);

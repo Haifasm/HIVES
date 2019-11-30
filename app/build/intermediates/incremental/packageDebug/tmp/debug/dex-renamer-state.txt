@@ -1,7 +1,4 @@
-#Sat Nov 30 14:57:11 AST 2019
-base.0=/Users/raghadalnassar/Desktop/HIVES-1Nf/HIVES-Final/app/build/intermediates/dex/debug/mergeDexDebug/out/classes.dex
-path.1=classes.dex
-renamed.1=classes2.dex
+#Sat Nov 30 19:36:07 AST 2019
+base.0=/Users/noura./Desktop/Project444/HIVES-Final/app/build/intermediates/dex/debug/mergeDexDebug/out/classes.dex
 path.0=classes.dex
 renamed.0=classes.dex
-base.1=/Users/uni/Android studio projects/HIVES-Final/app/build/intermediates/dex/debug/mergeDexDebug/out/classes.dex

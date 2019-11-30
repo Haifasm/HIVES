@@ -168,7 +168,7 @@ public class ViewPost extends AppCompatActivity implements PopUpDelPost.ExampleD
 
                         }
                         countDisLikes = (int)dataSnapshot.getChildrenCount();
-                        NumberOfLikes.setText(((countDisLikes) + "Likes"));
+                        NumberOfLikes.setText(((countDisLikes) +""));
                     }
 
 
@@ -210,7 +210,7 @@ public class ViewPost extends AppCompatActivity implements PopUpDelPost.ExampleD
 
                         }
                         countDisLikes = (int) dataSnapshot.getChildrenCount();
-                        NumberOfdisLikes.setText(((countDisLikes) + " dislikes"));
+                        NumberOfdisLikes.setText(((countDisLikes) + ""));
                     }
 
                     @Override
@@ -715,7 +715,7 @@ public class ViewPost extends AppCompatActivity implements PopUpDelPost.ExampleD
 
 
     private void LikeMaintainStatus() {
-        ClickPostRef.addValueEventListener(new ValueEventListener() {
+        PostRef2.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 
@@ -733,7 +733,7 @@ public class ViewPost extends AppCompatActivity implements PopUpDelPost.ExampleD
                     }
                 }
                 countLikes = (int) dataSnapshot.child("Like").getChildrenCount();
-                NumberOfLikes.setText(((countLikes) + " Likes"));
+                NumberOfLikes.setText(((countLikes) + ""));
             }
 
             @Override
@@ -745,7 +745,7 @@ public class ViewPost extends AppCompatActivity implements PopUpDelPost.ExampleD
     }
 
     private void DisLikeMaintainStatus() {
-        ClickPostRef.addValueEventListener(new ValueEventListener() {
+        PostRef2.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 
@@ -768,7 +768,7 @@ public class ViewPost extends AppCompatActivity implements PopUpDelPost.ExampleD
                     DislikeBtn.setEnabled(false);
                 }
                 countDisLikes = (int) dataSnapshot.child("disLike").getChildrenCount();
-                NumberOfdisLikes.setText(((countDisLikes) + " Dislikes"));
+                NumberOfdisLikes.setText(((countDisLikes) + " "));
 
 
             }
